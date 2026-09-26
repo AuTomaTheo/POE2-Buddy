@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Tests and build output
+coverage/
+*.tsbuildinfo
+
+# Secrets. The example file is safe to commit because every value is empty.
+.env
+.env.*
+!.env.example
+
+# Logs and OS files
+*.log
+.DS_Store
+
+# Local tool caches
+.vercel
