@@ -20,3 +20,6 @@ coverage/
 
 # Local tool caches
 .vercel
+
+# Isolated PoB2 calculator copy. Do not commit a Path of Building runtime.
+var/pob2-runtime/

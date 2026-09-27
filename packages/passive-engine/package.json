@@ -1,0 +1,20 @@
+{
+  "name": "@poe2-helper/passive-engine",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Passive-tree graph, main-tree path search, and stat extraction. No scoring yet.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit --pretty false"
+  },
+  "dependencies": {
+    "@poe2-helper/domain": "0.1.0"
+  },
+  "devDependencies": {
+    "@poe2-helper/data-sources": "0.1.0",
+    "@poe2-helper/scoring-engine": "0.1.0"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "@poe2-helper/gear-engine",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Normalizes equipped items into preserved raw text and known stat categories. Not a gear score.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit --pretty false"
+  },
+  "dependencies": {
+    "@poe2-helper/domain": "0.1.0",
+    "@poe2-helper/passive-engine": "0.1.0"
+  }
+}

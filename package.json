@@ -4,22 +4,29 @@
   "private": true,
   "description": "PoE2 Helper — deterministic Path of Exile 2 build helper",
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "packages/*"
   ],
   "scripts": {
     "dev": "npm run dev -w web",
     "build": "npm run build -w web",
     "start": "npm run start -w web",
-    "lint": "npm run lint -w web",
-    "typecheck": "tsc --noEmit -p tsconfig.json && npm run typecheck -w web",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit -p tsconfig.json && npm run typecheck -w web && npm run typecheck -w @poe2-helper/domain && npm run typecheck -w @poe2-helper/data-sources && npm run typecheck -w @poe2-helper/passive-engine && npm run typecheck -w @poe2-helper/scoring-engine && npm run typecheck -w @poe2-helper/gear-engine && npm run typecheck -w @poe2-helper/character-context && npm run typecheck -w @poe2-helper/pob2-calculator",
     "test": "vitest run",
+    "test:pob2-calculator": "vitest run --config vitest.pob2.config.mts",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "refresh:passive-tree": "tsx scripts/refresh-passive-tree.ts"
   },
   "devDependencies": {
     "@types/node": "^20",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.6",
     "prettier": "^3.6.2",
+    "tsx": "^4.23.15",
     "typescript": "^5",
+    "typescript-eslint": "^8.46.0",
     "vitest": "4.1.11"
   }
 }

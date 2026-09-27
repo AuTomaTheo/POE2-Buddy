@@ -1,0 +1,155 @@
+:root {
+  color-scheme: light;
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.45;
+}
+
+body {
+  margin: 0;
+  background: #f6f3ec;
+  color: #1d1a16;
+}
+
+.analysis {
+  box-sizing: border-box;
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.analysis-form,
+.analysis-meta {
+  display: grid;
+  gap: 0.75rem;
+}
+
+label {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+  font-weight: 600;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+}
+
+button {
+  justify-self: start;
+  padding: 0.4rem 0.9rem;
+}
+
+.analysis-error {
+  padding: 0.75rem 1rem;
+  background: #f8d7da;
+  color: #5c1a1a;
+}
+
+.analysis-meta {
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+}
+
+.analysis-meta div {
+  margin: 0;
+}
+
+dt {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border-bottom: 1px solid #d9d1c4;
+  text-align: left;
+  padding: 0.25rem 0.4rem;
+  vertical-align: top;
+}
+
+summary {
+  cursor: pointer;
+}
+
+details {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.path-row {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 0.8rem;
+}
+
+.compare-toggle {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.compare-toggle input {
+  width: auto;
+}
+
+.path-map {
+  width: 100%;
+  height: auto;
+  background: #fffdf8;
+  border: 1px solid #d9d1c4;
+}
+
+.path-edge-proposed {
+  stroke: #1d4e89;
+}
+
+.path-edge-other {
+  stroke: #b86e00;
+}
+
+.path-edge-current-link {
+  stroke: #6b6258;
+}
+
+.path-node-current {
+  fill: #6b6258;
+}
+
+.path-node-proposed {
+  fill: #1d4e89;
+}
+
+.path-node-shared {
+  fill: #6b3fa0;
+}
+
+.path-node-other {
+  fill: #b86e00;
+}
+
+.path-step {
+  fill: #fffdf8;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}

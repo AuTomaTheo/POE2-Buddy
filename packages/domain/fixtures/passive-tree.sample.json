@@ -1,0 +1,50 @@
+{
+  "version": {
+    "source": "fixture",
+    "version": "sample-1",
+    "fetchedAt": "2026-09-26T00:00:00.000Z"
+  },
+  "nodes": [
+    {
+      "id": 101,
+      "name": "Sample travel node",
+      "rawStats": [],
+      "neighborIds": [102],
+      "kinds": ["small"],
+      "sourceFlags": [],
+      "position": { "x": 0, "y": 0 }
+    },
+    {
+      "id": 102,
+      "name": "Sample notable",
+      "rawStats": ["10% increased Attack Speed"],
+      "neighborIds": [101, 103],
+      "kinds": ["notable"],
+      "sourceFlags": [],
+      "position": { "x": 100, "y": 0 }
+    },
+    {
+      "id": 103,
+      "name": "Sample keystone",
+      "rawStats": ["Sample keystone text"],
+      "neighborIds": [102],
+      "kinds": ["keystone"],
+      "sourceFlags": [],
+      "position": { "x": 200, "y": 0 }
+    },
+    {
+      "id": 201,
+      "name": "Sample ascendancy start",
+      "rawStats": [],
+      "neighborIds": [],
+      "kinds": ["ascendancy-start"],
+      "sourceFlags": [],
+      "ascendancyId": "Witch1"
+    }
+  ],
+  "edges": [
+    { "fromNodeId": 101, "toNodeId": 102 },
+    { "fromNodeId": 102, "toNodeId": 103 }
+  ],
+  "classStarts": []
+}

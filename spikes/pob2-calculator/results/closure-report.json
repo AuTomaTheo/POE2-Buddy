@@ -1,0 +1,362 @@
+{
+  "configurationEffect": {
+    "attempts": [
+      {
+        "changed": true,
+        "delta": [
+          {
+            "absoluteDelta": 0.08333333333,
+            "after": 0.9166666667,
+            "before": 0.8333333333,
+            "metric": "CastRate",
+            "percentDelta": 10
+          },
+          {
+            "absoluteDelta": 0.4458333333,
+            "after": 4.904166667,
+            "before": 4.458333333,
+            "metric": "CombinedAvg",
+            "percentDelta": 10
+          },
+          {
+            "absoluteDelta": 0.4458446466,
+            "after": 4.904291112,
+            "before": 4.458446466,
+            "metric": "CombinedDPS",
+            "percentDelta": 10
+          },
+          {
+            "absoluteDelta": 0.00001131322198,
+            "after": 0.0001244454418,
+            "before": 0.0001131322198,
+            "metric": "IgniteDPS",
+            "percentDelta": 10
+          },
+          {
+            "absoluteDelta": 0.00004525288791,
+            "after": 0.000497781767,
+            "before": 0.0004525288791,
+            "metric": "IgniteDamage",
+            "percentDelta": 10
+          },
+          {
+            "absoluteDelta": 0.00001000425415,
+            "after": 0.0001100467956,
+            "before": 0.0001000425415,
+            "metric": "IgniteStackPotential",
+            "percentDelta": 10
+          },
+          {
+            "absoluteDelta": 0.001000425415,
+            "after": 0.01100467956,
+            "before": 0.01000425415,
+            "metric": "IgniteStackPotentialPercent",
+            "percentDelta": 10
+          },
+          {
+            "absoluteDelta": 0.8333333333,
+            "after": 9.166666667,
+            "before": 8.333333333,
+            "metric": "ManaPerSecondCost",
+            "percentDelta": 10
+          },
+          {
+            "absoluteDelta": 0.08333333333,
+            "after": 0.9166666667,
+            "before": 0.8333333333,
+            "metric": "Speed",
+            "percentDelta": 10
+          },
+          {
+            "absoluteDelta": -0.1090909091,
+            "after": 1.090909091,
+            "before": 1.2,
+            "metric": "Time",
+            "percentDelta": -9.090909091
+          },
+          {
+            "absoluteDelta": 0.4458333333,
+            "after": 4.904166667,
+            "before": 4.458333333,
+            "metric": "TotalDPS",
+            "percentDelta": 10
+          },
+          {
+            "absoluteDelta": 0.00001131322198,
+            "after": 0.0001244454418,
+            "before": 0.0001131322198,
+            "metric": "TotalDotDPS",
+            "percentDelta": 10
+          },
+          {
+            "absoluteDelta": 0.4458333333,
+            "after": 4.904166667,
+            "before": 4.458333333,
+            "metric": "WithBleedDPS",
+            "percentDelta": 10
+          },
+          {
+            "absoluteDelta": 0.4458446466,
+            "after": 4.904291112,
+            "before": 4.458446466,
+            "metric": "WithIgniteDPS",
+            "percentDelta": 10
+          },
+          {
+            "absoluteDelta": 0.4458333333,
+            "after": 4.904166667,
+            "before": 4.458333333,
+            "metric": "WithPoisonDPS",
+            "percentDelta": 10
+          }
+        ],
+        "elapsedMs": 25,
+        "line": "10% increased Cast Speed",
+        "parseAccepted": true
+      }
+    ],
+    "restored": true
+  },
+  "fixtureD": {
+    "allocModeWasSetByProbe": false,
+    "loadMs": 269,
+    "nodes": [
+      {
+        "alloc": true,
+        "allocMode": 0,
+        "id": 54447,
+        "isNotable": false,
+        "name": "WITCH",
+        "present": true,
+        "type": "ClassStart"
+      },
+      {
+        "alloc": true,
+        "allocMode": 0,
+        "id": 4739,
+        "isNotable": false,
+        "name": "Spell Damage",
+        "present": true,
+        "type": "Normal"
+      },
+      {
+        "alloc": true,
+        "allocMode": 0,
+        "id": 18845,
+        "isNotable": false,
+        "name": "Spell Damage",
+        "present": true,
+        "type": "Normal"
+      },
+      {
+        "alloc": true,
+        "allocMode": 1,
+        "id": 1755,
+        "isNotable": false,
+        "name": "Spell Damage",
+        "present": true,
+        "type": "Normal"
+      },
+      {
+        "alloc": true,
+        "allocMode": 2,
+        "id": 22419,
+        "isNotable": false,
+        "name": "Attribute",
+        "present": true,
+        "type": "Normal"
+      },
+      {
+        "alloc": true,
+        "allocMode": 3,
+        "id": 6686,
+        "isNotable": false,
+        "name": "Mana Regeneration",
+        "present": true,
+        "type": "Normal"
+      },
+      {
+        "alloc": false,
+        "allocMode": 0,
+        "ascendancyName": "Lich",
+        "id": 17788,
+        "isNotable": true,
+        "name": "Crystalline Phylactery",
+        "present": true,
+        "type": "Notable"
+      },
+      {
+        "alloc": false,
+        "allocMode": 0,
+        "id": 2254,
+        "isNotable": true,
+        "name": "Pure Energy",
+        "present": true,
+        "type": "Notable"
+      },
+      {
+        "alloc": true,
+        "allocMode": 0,
+        "ascendancyName": "Infernalist",
+        "id": 32699,
+        "isNotable": false,
+        "name": "Infernalist",
+        "present": true,
+        "type": "AscendClassStart"
+      }
+    ],
+    "treeVersion": "0_5"
+  },
+  "ok": true,
+  "pobBranch": "master",
+  "pobPlatform": "win32",
+  "pobVersion": "0.23.1",
+  "supportMutation": {
+    "delta": [
+      {
+        "absoluteDelta": -5,
+        "after": 0,
+        "before": 5,
+        "metric": "ReqIntString",
+        "percentDelta": -100
+      }
+    ],
+    "elapsedMs": 16,
+    "executed": true,
+    "gemId": "Metadata/Items/Gems/SkillGemMagnifiedAreaSupportTwo",
+    "method": "gem.enabled = false, ProcessSocketGroup, BuildOutput",
+    "restored": true,
+    "support": "Magnified Area II",
+    "supportsBefore": ["Magnified Area II"],
+    "supportsDuring": [],
+    "supportsRestored": true
+  },
+  "runner": {
+    "coldProcessMs": 6281,
+    "pid": 29712,
+    "existingPobProcesses": ["7356 Path of Building-PoE2.exe"],
+    "pobDir": "C:\\Users\\Nitro5\\AppData\\Roaming\\Path of Building Community (PoE2)",
+    "buildLuaSha256Before": "4829ba2633aedf5324204dd180992ecc0c9d8bfade5e871a1001d551e37de683"
+  },
+  "buddy": {
+    "nodes": [
+      {
+        "skill": 54447,
+        "name": "WITCH",
+        "isNotable": false,
+        "isKeystone": false,
+        "isJewelSocket": false,
+        "ascendancyId": null,
+        "classStartIndex": [1, 7]
+      },
+      {
+        "skill": 4739,
+        "name": "Spell Damage",
+        "isNotable": false,
+        "isKeystone": false,
+        "isJewelSocket": false,
+        "ascendancyId": null,
+        "classStartIndex": null
+      },
+      {
+        "skill": 1755,
+        "name": "Spell Damage",
+        "isNotable": false,
+        "isKeystone": false,
+        "isJewelSocket": false,
+        "ascendancyId": null,
+        "classStartIndex": null
+      },
+      {
+        "skill": 22419,
+        "name": "Attribute",
+        "isNotable": false,
+        "isKeystone": false,
+        "isJewelSocket": false,
+        "ascendancyId": null,
+        "classStartIndex": null
+      },
+      {
+        "skill": 6686,
+        "name": "Mana Regeneration",
+        "isNotable": false,
+        "isKeystone": false,
+        "isJewelSocket": false,
+        "ascendancyId": null,
+        "classStartIndex": null
+      },
+      {
+        "skill": 17788,
+        "name": "Crystalline Phylactery",
+        "isNotable": true,
+        "isKeystone": false,
+        "isJewelSocket": true,
+        "ascendancyId": "Witch3",
+        "classStartIndex": null
+      },
+      {
+        "skill": 2254,
+        "name": "Pure Energy",
+        "isNotable": true,
+        "isKeystone": false,
+        "isJewelSocket": false,
+        "ascendancyId": null,
+        "classStartIndex": null
+      },
+      {
+        "skill": 32699,
+        "name": "Infernalist",
+        "isNotable": false,
+        "isKeystone": false,
+        "isJewelSocket": false,
+        "ascendancyId": "Witch1",
+        "classStartIndex": null
+      }
+    ],
+    "fixtureD": {
+      "caseId": "D",
+      "pobVersion": "0.23.1",
+      "pobCommit": "7d6f530cbdab20389ff8bc6ba97a37ac27f74e41",
+      "root": "PathOfBuilding2",
+      "targetVersion": "0_1",
+      "treeVersion": "0_5",
+      "className": "Witch",
+      "ascendancy": "Infernalist",
+      "level": 16,
+      "mainSocketGroup": 1,
+      "activeSkillSetId": "1",
+      "groups": [
+        {
+          "id": "1",
+          "mainActiveSkill": 1,
+          "mainActiveSkillCalcs": 1,
+          "selectedName": "Fireball",
+          "selectedSkillId": "FireballPlayer",
+          "display": [
+            {
+              "index": 1,
+              "name": "Fireball",
+              "skillId": "FireballPlayer",
+              "sourceGemIndex": 1
+            }
+          ],
+          "gems": [
+            {
+              "index": 1,
+              "name": "Fireball",
+              "skillId": "FireballPlayer",
+              "gameId": "Metadata/Items/Gem/SkillGemFireball",
+              "variantId": "Fireball",
+              "enabled": true,
+              "support": false
+            }
+          ]
+        }
+      ],
+      "sharedPassiveIds": [4739, 18845, 32699, 54447],
+      "weaponSet1": [1755],
+      "weaponSet2": [22419],
+      "weaponSet3": [6686, 18407, 47555, 51184, 55807]
+    }
+  }
+}

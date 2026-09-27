@@ -1,0 +1,16 @@
+{
+  "name": "@poe2-helper/pob2-calculator",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Named metric deltas from an isolated PoB2 worker. Not a score or a ranking.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit --pretty false"
+  },
+  "dependencies": {
+    "zod": "^3.25.76"
+  }
+}

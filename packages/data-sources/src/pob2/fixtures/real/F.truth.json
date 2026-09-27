@@ -1,0 +1,63 @@
+{
+  "caseId": "F",
+  "pobVersion": "0.23.1",
+  "pobCommit": "7d6f530cbdab20389ff8bc6ba97a37ac27f74e41",
+  "items": [
+    {
+      "slot": "Body Armour",
+      "name": "Ash Coat, Rusted Cuirass",
+      "base": "Rusted Cuirass",
+      "rarity": "RARE",
+      "raw": "Rarity: RARE\nAsh Coat\nRusted Cuirass\nArmour: 45\nQuality: 0\nLevelReq: 0\nImplicits: 0\n+100 to maximum Life\n+30% to Fire Resistance\n+20 to maximum Mana\n{crafted}+5 to Strength"
+    },
+    {
+      "slot": "Gloves",
+      "name": "Ash Wraps, Linen Wraps",
+      "base": "Linen Wraps",
+      "rarity": "RARE",
+      "raw": "Rarity: RARE\nAsh Wraps\nLinen Wraps\nEvasion: 23\nEnergy Shield: 10\nQuality: 0\nLevelReq: 16\nImplicits: 0\n{fractured}+8 to Dexterity\n12% increased Attack Speed"
+    },
+    {
+      "slot": "Helmet",
+      "name": "Black Sun Crest, Wrapped Greathelm",
+      "base": "Wrapped Greathelm",
+      "rarity": "UNIQUE",
+      "raw": "Rarity: UNIQUE\nBlack Sun Crest\nWrapped Greathelm\nArmour: 149\nQuality: 0\nLevelReq: 16\nImplicits: 0\n50% increased Armour\n5% increased Strength\n5% increased Dexterity\n5% increased Intelligence\n20% reduced Light Radius"
+    },
+    {
+      "slot": "Ring 1",
+      "name": "Left Loop, Iron Ring",
+      "base": "Iron Ring",
+      "rarity": "RARE",
+      "raw": "Rarity: RARE\nLeft Loop\nIron Ring\nLevelReq: 0\nImplicits: 0\n+5 to Strength"
+    },
+    {
+      "slot": "Ring 2",
+      "name": "Right Loop, Ruby Ring",
+      "base": "Ruby Ring",
+      "rarity": "RARE",
+      "raw": "Rarity: RARE\nRight Loop\nRuby Ring\nLevelReq: 8\nImplicits: 0\n+18% to Cold Resistance"
+    },
+    {
+      "slot": "Weapon 1 Swap",
+      "name": "Swap Wand, Withered Wand",
+      "base": "Withered Wand",
+      "rarity": "RARE",
+      "raw": "Rarity: RARE\nSwap Wand\nWithered Wand\nQuality: 0\nLevelReq: 0\nImplicits: 0\nAdds 1 to 12 Lightning Damage"
+    },
+    {
+      "slot": "Weapon 1",
+      "name": "Ash Wand, Withered Wand",
+      "base": "Withered Wand",
+      "rarity": "RARE",
+      "raw": "Rarity: RARE\nAsh Wand\nWithered Wand\nQuality: 0\nLevelReq: 0\nImplicits: 0\nAdds 5 to 8 Fire Damage\n+10 to Intelligence"
+    },
+    {
+      "slot": "Weapon 2",
+      "name": "Spare Focus, Twig Focus",
+      "base": "Twig Focus",
+      "rarity": "RARE",
+      "raw": "Rarity: RARE\nSpare Focus\nTwig Focus\nEnergy Shield: 52\nQuality: 0\nLevelReq: 0\nImplicits: 0\n+40 to maximum Energy Shield"
+    }
+  ]
+}

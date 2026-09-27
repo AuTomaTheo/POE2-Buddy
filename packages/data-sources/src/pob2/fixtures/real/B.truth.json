@@ -1,0 +1,80 @@
+{
+  "caseId": "B",
+  "pobVersion": "0.23.1",
+  "pobCommit": "7d6f530cbdab20389ff8bc6ba97a37ac27f74e41",
+  "root": "PathOfBuilding2",
+  "targetVersion": "0_1",
+  "treeVersion": "0_5",
+  "className": "Witch",
+  "ascendancy": "Infernalist",
+  "level": 16,
+  "mainSocketGroup": 2,
+  "activeSkillSetId": "1",
+  "groups": [
+    {
+      "id": "1",
+      "mainActiveSkill": 1,
+      "mainActiveSkillCalcs": 1,
+      "selectedName": "Spark",
+      "selectedSkillId": "SparkPlayer",
+      "display": [
+        {
+          "index": 1,
+          "name": "Spark",
+          "skillId": "SparkPlayer",
+          "sourceGemIndex": 1
+        }
+      ],
+      "gems": [
+        {
+          "index": 1,
+          "name": "Spark",
+          "skillId": "SparkPlayer",
+          "gameId": "Metadata/Items/Gems/SkillGemSpark",
+          "variantId": "Spark",
+          "enabled": true,
+          "support": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "mainActiveSkill": 1,
+      "mainActiveSkillCalcs": null,
+      "selectedName": "Fireball",
+      "selectedSkillId": "FireballPlayer",
+      "display": [
+        {
+          "index": 1,
+          "name": "Fireball",
+          "skillId": "FireballPlayer",
+          "sourceGemIndex": 1
+        }
+      ],
+      "gems": [
+        {
+          "index": 1,
+          "name": "Fireball",
+          "skillId": "FireballPlayer",
+          "gameId": "Metadata/Items/Gem/SkillGemFireball",
+          "variantId": "Fireball",
+          "enabled": true,
+          "support": false
+        },
+        {
+          "index": 2,
+          "name": "Rapid Attacks III",
+          "skillId": "SupportRapidAttacksPlayerThree",
+          "gameId": "Metadata/Items/Gems/SupportGemMartialTempoThree",
+          "variantId": "RapidAttacksSupportThree",
+          "enabled": true,
+          "support": true
+        }
+      ]
+    }
+  ],
+  "sharedPassiveIds": [32699, 54447],
+  "weaponSet1": [],
+  "weaponSet2": [],
+  "weaponSet3": []
+}

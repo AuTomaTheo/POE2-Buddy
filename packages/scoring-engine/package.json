@@ -1,0 +1,17 @@
+{
+  "name": "@poe2-helper/scoring-engine",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Configurable heuristic scores for passive paths. Not DPS or EHP.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit --pretty false"
+  },
+  "dependencies": {
+    "@poe2-helper/domain": "0.1.0",
+    "@poe2-helper/passive-engine": "0.1.0"
+  }
+}

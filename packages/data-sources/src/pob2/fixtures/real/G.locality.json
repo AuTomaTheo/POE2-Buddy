@@ -1,0 +1,54 @@
+{
+  "application": "Path of Building (PoE2)",
+  "version": "0.23.1",
+  "commit": "7d6f530cbdab20389ff8bc6ba97a37ac27f74e41",
+  "parentFixture": "G",
+  "note": "Expected locality is written from the saved item text in G.truth.json and the STEP-017B rules. It is not copied from parser output.",
+  "cases": [
+    {
+      "id": "cast-speed-weapon",
+      "slot": "Weapon 1",
+      "baseType": "Withered Wand",
+      "line": "10% increased Cast Speed",
+      "expectedLocality": "global",
+      "expectedUnderstood": true,
+      "reason": "The saved line is ordinary increased Cast Speed. That grammar is character-wide. The wand slot does not make it local."
+    },
+    {
+      "id": "cast-speed-focus",
+      "slot": "Weapon 2",
+      "baseType": "Twig Focus",
+      "line": "12% increased Cast Speed",
+      "expectedLocality": "global",
+      "expectedUnderstood": true,
+      "reason": "The saved line is ordinary increased Cast Speed on a focus. A focus slot does not make it local."
+    },
+    {
+      "id": "cast-speed-ring",
+      "slot": "Ring 1",
+      "baseType": "Iron Ring",
+      "line": "8% increased Cast Speed",
+      "expectedLocality": "global",
+      "expectedUnderstood": true,
+      "reason": "The saved line is ordinary increased Cast Speed on a ring. The same grammar is global off a weapon as well."
+    },
+    {
+      "id": "elemental-bare",
+      "slot": "Weapon 1",
+      "baseType": "Withered Wand",
+      "line": "80% increased Elemental Damage",
+      "expectedLocality": "unknown",
+      "expectedUnderstood": false,
+      "reason": "The saved line does not say with Attacks or with Spells. The wand slot is not enough to call it local, and the wording is not enough to call it global."
+    },
+    {
+      "id": "elemental-attacks",
+      "slot": "Weapon 1",
+      "baseType": "Withered Wand",
+      "line": "80% increased Elemental Damage with Attacks",
+      "expectedLocality": "global",
+      "expectedUnderstood": true,
+      "reason": "The saved line explicitly says with Attacks, so the scope is character-wide attack damage."
+    }
+  ]
+}

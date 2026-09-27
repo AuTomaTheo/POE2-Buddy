@@ -1,0 +1,32 @@
+{
+  "name": "Sample Witch",
+  "level": 24,
+  "className": "Witch",
+  "ascendancy": "Infernalist",
+  "allocatedPassiveIds": [101, 102],
+  "weaponSetSpecialisations": {
+    "set1": [],
+    "set2": [103],
+    "set3": []
+  },
+  "questStats": ["Sample quest passive"],
+  "skills": [
+    {
+      "name": "Sample Spell",
+      "baseType": "Sample Spell"
+    }
+  ],
+  "equipment": [
+    {
+      "slot": "Weapon1",
+      "name": "Sample Wand",
+      "baseType": "Wand",
+      "rarity": "Normal"
+    }
+  ],
+  "sourceVersion": {
+    "source": "fixture",
+    "version": "sample-1",
+    "fetchedAt": "2026-09-26T00:00:00.000Z"
+  }
+}

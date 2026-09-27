@@ -1,0 +1,60 @@
+{
+  "caseId": "C",
+  "pobVersion": "0.23.1",
+  "pobCommit": "7d6f530cbdab20389ff8bc6ba97a37ac27f74e41",
+  "root": "PathOfBuilding2",
+  "targetVersion": "0_1",
+  "treeVersion": "0_5",
+  "className": "Witch",
+  "ascendancy": "Infernalist",
+  "level": 16,
+  "mainSocketGroup": 1,
+  "activeSkillSetId": "1",
+  "groups": [
+    {
+      "id": "1",
+      "mainActiveSkill": 2,
+      "mainActiveSkillCalcs": 1,
+      "selectedName": "Shockwave Slam",
+      "selectedSkillId": "ShockwaveTotemQuakePlayer",
+      "display": [
+        {
+          "index": 1,
+          "name": "Shockwave Totem",
+          "skillId": "ShockwaveTotemPlayer",
+          "sourceGemIndex": 1
+        },
+        {
+          "index": 2,
+          "name": "Shockwave Slam",
+          "skillId": "ShockwaveTotemQuakePlayer",
+          "sourceGemIndex": 1
+        }
+      ],
+      "gems": [
+        {
+          "index": 1,
+          "name": "Shockwave Totem",
+          "skillId": "ShockwaveTotemPlayer",
+          "gameId": "Metadata/Items/Gems/SkillGemShockwaveTotem",
+          "variantId": "ShockwaveTotem",
+          "enabled": true,
+          "support": false
+        },
+        {
+          "index": 2,
+          "name": "Magnified Area II",
+          "skillId": "SupportMagnifiedAreaPlayerTwo",
+          "gameId": "Metadata/Items/Gems/SupportGemMagnifiedEffectTwo",
+          "variantId": "MagnifiedAreaSupportTwo",
+          "enabled": true,
+          "support": true
+        }
+      ]
+    }
+  ],
+  "sharedPassiveIds": [32699, 54447],
+  "weaponSet1": [],
+  "weaponSet2": [],
+  "weaponSet3": []
+}

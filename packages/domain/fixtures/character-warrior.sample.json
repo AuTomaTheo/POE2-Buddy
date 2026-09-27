@@ -1,0 +1,25 @@
+{
+  "name": "Sample Warrior",
+  "level": 8,
+  "className": "Warrior",
+  "ascendancy": "Titan",
+  "allocatedPassiveIds": [101],
+  "weaponSetSpecialisations": {
+    "set1": [],
+    "set2": [],
+    "set3": []
+  },
+  "questStats": [],
+  "skills": [
+    {
+      "name": "Sample Slam",
+      "baseType": "Sample Slam"
+    }
+  ],
+  "equipment": [],
+  "sourceVersion": {
+    "source": "fixture",
+    "version": "sample-1",
+    "fetchedAt": "2026-09-26T00:00:00.000Z"
+  }
+}

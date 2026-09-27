@@ -1,0 +1,36 @@
+{
+  "application": "Path of Building (PoE2)",
+  "version": "0.23.1",
+  "commit": "7d6f530cbdab20389ff8bc6ba97a37ac27f74e41",
+  "parentFixture": "F",
+  "note": "Expected locality is written from the saved item text in F.truth.json and the locality rules in this step. It is not copied from parser output.",
+  "cases": [
+    {
+      "id": "L1",
+      "slot": "Weapon 2",
+      "baseType": "Twig Focus",
+      "line": "+40 to maximum Energy Shield",
+      "expectedLocality": "local",
+      "expectedUnderstood": true,
+      "reason": "The saved item text includes the property line Energy Shield: 52 on an off-hand focus. Flat maximum Energy Shield on that same item changes the item's own Energy Shield."
+    },
+    {
+      "id": "L2",
+      "slot": "Body Armour",
+      "baseType": "Rusted Cuirass",
+      "line": "+30% to Fire Resistance",
+      "expectedLocality": "global",
+      "expectedUnderstood": true,
+      "reason": "This grammar's elemental resistance is a character-wide stat. The line does not modify the armour property Armour: 45."
+    },
+    {
+      "id": "L3",
+      "slot": "Helmet",
+      "baseType": "Wrapped Greathelm",
+      "line": "50% increased Armour",
+      "expectedLocality": "unknown",
+      "expectedUnderstood": false,
+      "reason": "The saved item has an Armour property, and this version still does not decide whether increased Armour is local or global."
+    }
+  ]
+}

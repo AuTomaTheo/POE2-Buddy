@@ -1,0 +1,1773 @@
+{
+  "cases": {
+    "B": {
+      "classInfo": {
+        "allocatedCount": 0,
+        "ascendClassId": 1,
+        "ascendancyAllocatedCount": 0,
+        "ascendancyName": "Infernalist",
+        "classId": 1,
+        "className": "Witch",
+        "targetVersion": "0_1",
+        "treeVersion": "0_5",
+        "weaponSet1Count": 0,
+        "weaponSet2Count": 0
+      },
+      "configuration": [
+        {
+          "key": "ChanceToIgnoreEnemyPhysicalDamageReductionMode",
+          "value": "AVERAGE"
+        },
+        {
+          "key": "ConcPathBypassCD",
+          "value": true
+        },
+        {
+          "key": "FlickerStrikeBypassCD",
+          "value": true
+        },
+        {
+          "key": "GamblesprintMovementSpeed",
+          "value": 20
+        },
+        {
+          "key": "SecondsSinceInevitableCrit",
+          "value": 10
+        },
+        {
+          "key": "VigilantStrikeBypassCD",
+          "value": true
+        },
+        {
+          "key": "companionInPresence",
+          "value": true
+        },
+        {
+          "key": "conditionChampionIntimidate",
+          "value": true
+        },
+        {
+          "key": "doomBlastSource",
+          "value": "vixen"
+        },
+        {
+          "key": "elementalConfluxElement",
+          "value": 1
+        },
+        {
+          "key": "enemyIsBoss",
+          "value": "Pinnacle"
+        },
+        {
+          "key": "enemySizePreset",
+          "value": "Medium"
+        },
+        {
+          "key": "inDemonForm",
+          "value": true
+        },
+        {
+          "key": "multiplierCurrentManaPercentage",
+          "value": 100
+        },
+        {
+          "key": "presetBossSkills",
+          "value": "None"
+        },
+        {
+          "key": "purpleFlameStacks",
+          "value": 10
+        },
+        {
+          "key": "questAct 1ClearfellBeira",
+          "value": true
+        },
+        {
+          "key": "questAct 1FreythornKing In The Mists",
+          "value": true
+        },
+        {
+          "key": "questAct 1Ogham ManorCandlemass",
+          "value": true
+        },
+        {
+          "key": "questAct 2Spires of DesharSisters of Garukhan Shrine",
+          "value": true
+        },
+        {
+          "key": "questAct 2Valley of the TitansMedallion",
+          "value": "None"
+        },
+        {
+          "key": "questAct 3Azak BogIgnagduk",
+          "value": true
+        },
+        {
+          "key": "questAct 3Jiquani's MachinariumBlackjaw",
+          "value": true
+        },
+        {
+          "key": "questAct 3Venom CryptsVenom Draught",
+          "value": "None"
+        },
+        {
+          "key": "questAct 4Abandoned PrisonGoddess of Justice",
+          "value": "None"
+        },
+        {
+          "key": "questAct 4Eye of HinekoraSilent Hall",
+          "value": true
+        },
+        {
+          "key": "questAct 4Eye of HinekoraTribal Medicine",
+          "value": "None"
+        },
+        {
+          "key": "questAct 4Halls Of The DeadNgamahu's Test",
+          "value": "None"
+        },
+        {
+          "key": "questAct 4Halls Of The DeadTasalio's Test",
+          "value": "None"
+        },
+        {
+          "key": "questAct 4Halls Of The DeadTawhoa's Test",
+          "value": "None"
+        },
+        {
+          "key": "questInterlude 2Khari CrossingMolten Shrine",
+          "value": true
+        },
+        {
+          "key": "questInterlude 2QimahSeven Pillars",
+          "value": "None"
+        },
+        {
+          "key": "questInterlude 3Kriar VillageLythara",
+          "value": true
+        },
+        {
+          "key": "raiseSpectreEnableBuffs",
+          "value": true
+        },
+        {
+          "key": "raiseSpectreEnableCurses",
+          "value": true
+        },
+        {
+          "key": "repeatMode",
+          "value": "AVERAGE"
+        },
+        {
+          "key": "resistancePenalty",
+          "value": -60
+        },
+        {
+          "key": "resourceGainMode",
+          "value": "AVERAGE"
+        },
+        {
+          "key": "summonCompanionEnableBuffs",
+          "value": true
+        },
+        {
+          "key": "summonCompanionEnableCurses",
+          "value": true
+        },
+        {
+          "key": "summonElementalRelicEnableAngerAura",
+          "value": true
+        },
+        {
+          "key": "summonElementalRelicEnableHatredAura",
+          "value": true
+        },
+        {
+          "key": "summonElementalRelicEnableWrathAura",
+          "value": true
+        },
+        {
+          "key": "targetBrandedEnemy",
+          "value": true
+        },
+        {
+          "key": "touchedDebuffsCount",
+          "value": 10
+        }
+      ],
+      "loadMs": 203,
+      "memoryKb": 178844.7148,
+      "metrics": {
+        "Armour": 0,
+        "AverageDamage": 5.35,
+        "AverageHit": 5.35,
+        "CastRate": 0.8333333333,
+        "ChaosResist": 0,
+        "ColdResist": -50,
+        "CombinedDPS": 4.458446466,
+        "CritChance": 7,
+        "CritMultiplier": 2,
+        "DeflectChance": 0,
+        "DeflectionRating": 0,
+        "EnergyShield": 0,
+        "Evasion": 7,
+        "FireResist": -50,
+        "FullDPS": 0,
+        "HitChance": 100,
+        "Life": 254,
+        "LifeRegen": 0,
+        "LightningResist": -50,
+        "Mana": 130,
+        "Speed": 0.8333333333,
+        "Spirit": 100,
+        "TotalDPS": 4.458333333,
+        "TotalEHP": 186.6243634
+      },
+      "nodes": [
+        {
+          "alloc": true,
+          "allocMode": 0,
+          "id": 54447,
+          "name": "WITCH",
+          "present": true,
+          "type": "ClassStart"
+        },
+        {
+          "alloc": false,
+          "allocMode": 0,
+          "id": 4739,
+          "name": "Spell Damage",
+          "present": true,
+          "type": "Normal"
+        },
+        {
+          "alloc": false,
+          "allocMode": 0,
+          "id": 18845,
+          "name": "Spell Damage",
+          "present": true,
+          "type": "Normal"
+        },
+        {
+          "alloc": true,
+          "allocMode": 0,
+          "ascendancyName": "Infernalist",
+          "id": 32699,
+          "name": "Infernalist",
+          "present": true,
+          "type": "AscendClassStart"
+        },
+        {
+          "alloc": false,
+          "allocMode": 0,
+          "id": 1755,
+          "name": "Spell Damage",
+          "present": true,
+          "type": "Normal"
+        },
+        {
+          "alloc": false,
+          "allocMode": 0,
+          "id": 41965,
+          "name": "Spell Damage",
+          "present": true,
+          "type": "Normal"
+        }
+      ],
+      "skill": {
+        "baseFlags": ["projectile", "spell"],
+        "displayName": "Fireball",
+        "effectId": "FireballPlayer",
+        "enabled": true,
+        "gems": [
+          {
+            "enabled": true,
+            "gemId": "Metadata/Items/Gems/SkillGemFireball",
+            "level": 1,
+            "nameSpec": "Fireball",
+            "quality": 0,
+            "skillId": "FireballPlayer"
+          },
+          {
+            "enabled": true,
+            "gemId": "Metadata/Items/Gems/SkillGemRapidAttacksSupportThree",
+            "level": 1,
+            "nameSpec": "Rapid Attacks III",
+            "quality": 0,
+            "skillId": "SupportRapidAttacksPlayerThree"
+          }
+        ],
+        "groupLabel": "",
+        "mainActiveSkill": 1,
+        "mainSocketGroup": 2,
+        "skillTypes": [
+          "Area",
+          "AreaSpell",
+          "Damage",
+          "Fire",
+          "Invokable",
+          "Mineable",
+          "Multicastable",
+          "Projectile",
+          "ProjectilesFromUser",
+          "Spell",
+          "Totemable",
+          "Trappable",
+          "Triggerable",
+          "Unleashable",
+          "UsableWhileMoving"
+        ],
+        "sourceGemName": "Fireball",
+        "sourceSkillId": "FireballPlayer",
+        "supports": ["Rapid Attacks III"]
+      }
+    },
+    "C": {
+      "classInfo": {
+        "allocatedCount": 0,
+        "ascendClassId": 1,
+        "ascendancyAllocatedCount": 0,
+        "ascendancyName": "Infernalist",
+        "classId": 1,
+        "className": "Witch",
+        "targetVersion": "0_1",
+        "treeVersion": "0_5",
+        "weaponSet1Count": 0,
+        "weaponSet2Count": 0
+      },
+      "configuration": [
+        {
+          "key": "ChanceToIgnoreEnemyPhysicalDamageReductionMode",
+          "value": "AVERAGE"
+        },
+        {
+          "key": "ConcPathBypassCD",
+          "value": true
+        },
+        {
+          "key": "FlickerStrikeBypassCD",
+          "value": true
+        },
+        {
+          "key": "GamblesprintMovementSpeed",
+          "value": 20
+        },
+        {
+          "key": "SecondsSinceInevitableCrit",
+          "value": 10
+        },
+        {
+          "key": "VigilantStrikeBypassCD",
+          "value": true
+        },
+        {
+          "key": "companionInPresence",
+          "value": true
+        },
+        {
+          "key": "conditionChampionIntimidate",
+          "value": true
+        },
+        {
+          "key": "doomBlastSource",
+          "value": "vixen"
+        },
+        {
+          "key": "elementalConfluxElement",
+          "value": 1
+        },
+        {
+          "key": "enemyIsBoss",
+          "value": "Pinnacle"
+        },
+        {
+          "key": "enemySizePreset",
+          "value": "Medium"
+        },
+        {
+          "key": "inDemonForm",
+          "value": true
+        },
+        {
+          "key": "multiplierCurrentManaPercentage",
+          "value": 100
+        },
+        {
+          "key": "presetBossSkills",
+          "value": "None"
+        },
+        {
+          "key": "purpleFlameStacks",
+          "value": 10
+        },
+        {
+          "key": "questAct 1ClearfellBeira",
+          "value": true
+        },
+        {
+          "key": "questAct 1FreythornKing In The Mists",
+          "value": true
+        },
+        {
+          "key": "questAct 1Ogham ManorCandlemass",
+          "value": true
+        },
+        {
+          "key": "questAct 2Spires of DesharSisters of Garukhan Shrine",
+          "value": true
+        },
+        {
+          "key": "questAct 2Valley of the TitansMedallion",
+          "value": "None"
+        },
+        {
+          "key": "questAct 3Azak BogIgnagduk",
+          "value": true
+        },
+        {
+          "key": "questAct 3Jiquani's MachinariumBlackjaw",
+          "value": true
+        },
+        {
+          "key": "questAct 3Venom CryptsVenom Draught",
+          "value": "None"
+        },
+        {
+          "key": "questAct 4Abandoned PrisonGoddess of Justice",
+          "value": "None"
+        },
+        {
+          "key": "questAct 4Eye of HinekoraSilent Hall",
+          "value": true
+        },
+        {
+          "key": "questAct 4Eye of HinekoraTribal Medicine",
+          "value": "None"
+        },
+        {
+          "key": "questAct 4Halls Of The DeadNgamahu's Test",
+          "value": "None"
+        },
+        {
+          "key": "questAct 4Halls Of The DeadTasalio's Test",
+          "value": "None"
+        },
+        {
+          "key": "questAct 4Halls Of The DeadTawhoa's Test",
+          "value": "None"
+        },
+        {
+          "key": "questInterlude 2Khari CrossingMolten Shrine",
+          "value": true
+        },
+        {
+          "key": "questInterlude 2QimahSeven Pillars",
+          "value": "None"
+        },
+        {
+          "key": "questInterlude 3Kriar VillageLythara",
+          "value": true
+        },
+        {
+          "key": "raiseSpectreEnableBuffs",
+          "value": true
+        },
+        {
+          "key": "raiseSpectreEnableCurses",
+          "value": true
+        },
+        {
+          "key": "repeatMode",
+          "value": "AVERAGE"
+        },
+        {
+          "key": "resistancePenalty",
+          "value": -60
+        },
+        {
+          "key": "resourceGainMode",
+          "value": "AVERAGE"
+        },
+        {
+          "key": "summonCompanionEnableBuffs",
+          "value": true
+        },
+        {
+          "key": "summonCompanionEnableCurses",
+          "value": true
+        },
+        {
+          "key": "summonElementalRelicEnableAngerAura",
+          "value": true
+        },
+        {
+          "key": "summonElementalRelicEnableHatredAura",
+          "value": true
+        },
+        {
+          "key": "summonElementalRelicEnableWrathAura",
+          "value": true
+        },
+        {
+          "key": "targetBrandedEnemy",
+          "value": true
+        },
+        {
+          "key": "touchedDebuffsCount",
+          "value": 10
+        }
+      ],
+      "loadMs": 173,
+      "memoryKb": 211813.6367,
+      "metrics": {
+        "Armour": 0,
+        "ChaosResist": 0,
+        "ColdResist": -50,
+        "CombinedDPS": 0,
+        "DeflectChance": 0,
+        "DeflectionRating": 0,
+        "EnergyShield": 0,
+        "Evasion": 7,
+        "FireResist": -50,
+        "FullDPS": 0,
+        "Life": 254,
+        "LifeRegen": 0,
+        "LightningResist": -50,
+        "Mana": 130,
+        "Spirit": 100,
+        "TotalEHP": 186.6243634
+      },
+      "nodes": [
+        {
+          "alloc": true,
+          "allocMode": 0,
+          "id": 54447,
+          "name": "WITCH",
+          "present": true,
+          "type": "ClassStart"
+        },
+        {
+          "alloc": false,
+          "allocMode": 0,
+          "id": 4739,
+          "name": "Spell Damage",
+          "present": true,
+          "type": "Normal"
+        },
+        {
+          "alloc": false,
+          "allocMode": 0,
+          "id": 18845,
+          "name": "Spell Damage",
+          "present": true,
+          "type": "Normal"
+        },
+        {
+          "alloc": true,
+          "allocMode": 0,
+          "ascendancyName": "Infernalist",
+          "id": 32699,
+          "name": "Infernalist",
+          "present": true,
+          "type": "AscendClassStart"
+        },
+        {
+          "alloc": false,
+          "allocMode": 0,
+          "id": 1755,
+          "name": "Spell Damage",
+          "present": true,
+          "type": "Normal"
+        },
+        {
+          "alloc": false,
+          "allocMode": 0,
+          "id": 41965,
+          "name": "Spell Damage",
+          "present": true,
+          "type": "Normal"
+        }
+      ],
+      "skill": {
+        "baseFlags": ["area", "attack", "melee", "totem"],
+        "displayName": "Shockwave Slam",
+        "effectId": "ShockwaveTotemQuakePlayer",
+        "enabled": true,
+        "gems": [
+          {
+            "enabled": true,
+            "gemId": "Metadata/Items/Gems/SkillGemShockwaveTotem",
+            "level": 1,
+            "nameSpec": "Shockwave Totem",
+            "quality": 0,
+            "skillId": "ShockwaveTotemPlayer"
+          },
+          {
+            "enabled": true,
+            "gemId": "Metadata/Items/Gems/SkillGemMagnifiedAreaSupportTwo",
+            "level": 1,
+            "nameSpec": "Magnified Area II",
+            "quality": 0,
+            "skillId": "SupportMagnifiedAreaPlayerTwo"
+          }
+        ],
+        "groupLabel": "",
+        "mainActiveSkill": 2,
+        "mainSocketGroup": 1,
+        "skillTypes": [
+          "Area",
+          "Attack",
+          "AttackInPlace",
+          "CannotCreateJaggedGround",
+          "Melee",
+          "Nova",
+          "Slam",
+          "UsableWhileShapeshifted",
+          "UsedByProxy",
+          "UsedByTotem"
+        ],
+        "sourceGemName": "Shockwave Totem",
+        "sourceSkillId": "ShockwaveTotemPlayer",
+        "supports": ["Magnified Area II"]
+      }
+    },
+    "E": {
+      "classInfo": {
+        "allocatedCount": 0,
+        "ascendClassId": 1,
+        "ascendancyAllocatedCount": 0,
+        "ascendancyName": "Infernalist",
+        "classId": 1,
+        "className": "Witch",
+        "targetVersion": "0_1",
+        "treeVersion": "0_5",
+        "weaponSet1Count": 0,
+        "weaponSet2Count": 0
+      },
+      "configuration": [
+        {
+          "key": "ChanceToIgnoreEnemyPhysicalDamageReductionMode",
+          "value": "AVERAGE"
+        },
+        {
+          "key": "ConcPathBypassCD",
+          "value": true
+        },
+        {
+          "key": "FlickerStrikeBypassCD",
+          "value": true
+        },
+        {
+          "key": "GamblesprintMovementSpeed",
+          "value": 20
+        },
+        {
+          "key": "SecondsSinceInevitableCrit",
+          "value": 10
+        },
+        {
+          "key": "VigilantStrikeBypassCD",
+          "value": true
+        },
+        {
+          "key": "companionInPresence",
+          "value": true
+        },
+        {
+          "key": "conditionChampionIntimidate",
+          "value": true
+        },
+        {
+          "key": "conditionFullLife",
+          "value": true
+        },
+        {
+          "key": "customMods",
+          "value": "Added fire damage"
+        },
+        {
+          "key": "detonateDeadCorpseLife",
+          "value": 5000
+        },
+        {
+          "key": "doomBlastSource",
+          "value": "vixen"
+        },
+        {
+          "key": "elementalConfluxElement",
+          "value": 1
+        },
+        {
+          "key": "enemyIsBoss",
+          "value": "Pinnacle"
+        },
+        {
+          "key": "enemySizePreset",
+          "value": "Medium"
+        },
+        {
+          "key": "inDemonForm",
+          "value": true
+        },
+        {
+          "key": "multiplierCurrentManaPercentage",
+          "value": 100
+        },
+        {
+          "key": "presetBossSkills",
+          "value": "None"
+        },
+        {
+          "key": "purpleFlameStacks",
+          "value": 10
+        },
+        {
+          "key": "questAct 1ClearfellBeira",
+          "value": true
+        },
+        {
+          "key": "questAct 1FreythornKing In The Mists",
+          "value": true
+        },
+        {
+          "key": "questAct 1Ogham ManorCandlemass",
+          "value": true
+        },
+        {
+          "key": "questAct 2Spires of DesharSisters of Garukhan Shrine",
+          "value": true
+        },
+        {
+          "key": "questAct 2Valley of the TitansMedallion",
+          "value": "None"
+        },
+        {
+          "key": "questAct 3Azak BogIgnagduk",
+          "value": true
+        },
+        {
+          "key": "questAct 3Jiquani's MachinariumBlackjaw",
+          "value": true
+        },
+        {
+          "key": "questAct 3Venom CryptsVenom Draught",
+          "value": "None"
+        },
+        {
+          "key": "questAct 4Abandoned PrisonGoddess of Justice",
+          "value": "None"
+        },
+        {
+          "key": "questAct 4Eye of HinekoraSilent Hall",
+          "value": true
+        },
+        {
+          "key": "questAct 4Eye of HinekoraTribal Medicine",
+          "value": "None"
+        },
+        {
+          "key": "questAct 4Halls Of The DeadNgamahu's Test",
+          "value": "None"
+        },
+        {
+          "key": "questAct 4Halls Of The DeadTasalio's Test",
+          "value": "None"
+        },
+        {
+          "key": "questAct 4Halls Of The DeadTawhoa's Test",
+          "value": "None"
+        },
+        {
+          "key": "questInterlude 2Khari CrossingMolten Shrine",
+          "value": true
+        },
+        {
+          "key": "questInterlude 2QimahSeven Pillars",
+          "value": "None"
+        },
+        {
+          "key": "questInterlude 3Kriar VillageLythara",
+          "value": true
+        },
+        {
+          "key": "raiseSpectreEnableBuffs",
+          "value": true
+        },
+        {
+          "key": "raiseSpectreEnableCurses",
+          "value": true
+        },
+        {
+          "key": "repeatMode",
+          "value": "AVERAGE"
+        },
+        {
+          "key": "resistancePenalty",
+          "value": -60
+        },
+        {
+          "key": "resourceGainMode",
+          "value": "AVERAGE"
+        },
+        {
+          "key": "summonCompanionEnableBuffs",
+          "value": true
+        },
+        {
+          "key": "summonCompanionEnableCurses",
+          "value": true
+        },
+        {
+          "key": "summonElementalRelicEnableAngerAura",
+          "value": true
+        },
+        {
+          "key": "summonElementalRelicEnableHatredAura",
+          "value": true
+        },
+        {
+          "key": "summonElementalRelicEnableWrathAura",
+          "value": true
+        },
+        {
+          "key": "targetBrandedEnemy",
+          "value": true
+        },
+        {
+          "key": "touchedDebuffsCount",
+          "value": 10
+        }
+      ],
+      "loadMs": 181,
+      "memoryKb": 244758.9922,
+      "metrics": {
+        "Armour": 0,
+        "AverageDamage": 5.35,
+        "AverageHit": 5.35,
+        "CastRate": 0.8333333333,
+        "ChaosResist": 0,
+        "ColdResist": -50,
+        "CombinedDPS": 4.458446466,
+        "CritChance": 7,
+        "CritMultiplier": 2,
+        "DeflectChance": 0,
+        "DeflectionRating": 0,
+        "EnergyShield": 0,
+        "Evasion": 7,
+        "FireResist": -50,
+        "FullDPS": 0,
+        "HitChance": 100,
+        "Life": 254,
+        "LifeRegen": 0,
+        "LightningResist": -50,
+        "Mana": 130,
+        "Speed": 0.8333333333,
+        "Spirit": 100,
+        "TotalDPS": 4.458333333,
+        "TotalEHP": 186.6243634
+      },
+      "nodes": [
+        {
+          "alloc": true,
+          "allocMode": 0,
+          "id": 54447,
+          "name": "WITCH",
+          "present": true,
+          "type": "ClassStart"
+        },
+        {
+          "alloc": false,
+          "allocMode": 0,
+          "id": 4739,
+          "name": "Spell Damage",
+          "present": true,
+          "type": "Normal"
+        },
+        {
+          "alloc": false,
+          "allocMode": 0,
+          "id": 18845,
+          "name": "Spell Damage",
+          "present": true,
+          "type": "Normal"
+        },
+        {
+          "alloc": true,
+          "allocMode": 0,
+          "ascendancyName": "Infernalist",
+          "id": 32699,
+          "name": "Infernalist",
+          "present": true,
+          "type": "AscendClassStart"
+        },
+        {
+          "alloc": false,
+          "allocMode": 0,
+          "id": 1755,
+          "name": "Spell Damage",
+          "present": true,
+          "type": "Normal"
+        },
+        {
+          "alloc": false,
+          "allocMode": 0,
+          "id": 41965,
+          "name": "Spell Damage",
+          "present": true,
+          "type": "Normal"
+        }
+      ],
+      "skill": {
+        "baseFlags": ["projectile", "spell"],
+        "displayName": "Fireball",
+        "effectId": "FireballPlayer",
+        "enabled": true,
+        "gems": [
+          {
+            "enabled": true,
+            "gemId": "Metadata/Items/Gems/SkillGemFireball",
+            "level": 1,
+            "nameSpec": "Fireball",
+            "quality": 0,
+            "skillId": "FireballPlayer"
+          }
+        ],
+        "groupLabel": "",
+        "mainActiveSkill": 1,
+        "mainSocketGroup": 1,
+        "skillTypes": [
+          "Area",
+          "AreaSpell",
+          "Damage",
+          "Fire",
+          "Invokable",
+          "Mineable",
+          "Multicastable",
+          "Projectile",
+          "ProjectilesFromUser",
+          "Spell",
+          "Totemable",
+          "Trappable",
+          "Triggerable",
+          "Unleashable",
+          "UsableWhileMoving"
+        ],
+        "sourceGemName": "Fireball",
+        "sourceSkillId": "FireballPlayer",
+        "supports": []
+      }
+    },
+    "F": {
+      "classInfo": {
+        "allocatedCount": 0,
+        "ascendClassId": 1,
+        "ascendancyAllocatedCount": 0,
+        "ascendancyName": "Infernalist",
+        "classId": 1,
+        "className": "Witch",
+        "targetVersion": "0_1",
+        "treeVersion": "0_5",
+        "weaponSet1Count": 0,
+        "weaponSet2Count": 0
+      },
+      "configuration": [
+        {
+          "key": "ChanceToIgnoreEnemyPhysicalDamageReductionMode",
+          "value": "AVERAGE"
+        },
+        {
+          "key": "ConcPathBypassCD",
+          "value": true
+        },
+        {
+          "key": "FlickerStrikeBypassCD",
+          "value": true
+        },
+        {
+          "key": "GamblesprintMovementSpeed",
+          "value": 20
+        },
+        {
+          "key": "SecondsSinceInevitableCrit",
+          "value": 10
+        },
+        {
+          "key": "VigilantStrikeBypassCD",
+          "value": true
+        },
+        {
+          "key": "companionInPresence",
+          "value": true
+        },
+        {
+          "key": "conditionChampionIntimidate",
+          "value": true
+        },
+        {
+          "key": "doomBlastSource",
+          "value": "vixen"
+        },
+        {
+          "key": "elementalConfluxElement",
+          "value": 1
+        },
+        {
+          "key": "enemyIsBoss",
+          "value": "Pinnacle"
+        },
+        {
+          "key": "enemySizePreset",
+          "value": "Medium"
+        },
+        {
+          "key": "inDemonForm",
+          "value": true
+        },
+        {
+          "key": "multiplierCurrentManaPercentage",
+          "value": 100
+        },
+        {
+          "key": "presetBossSkills",
+          "value": "None"
+        },
+        {
+          "key": "purpleFlameStacks",
+          "value": 10
+        },
+        {
+          "key": "questAct 1ClearfellBeira",
+          "value": true
+        },
+        {
+          "key": "questAct 1FreythornKing In The Mists",
+          "value": true
+        },
+        {
+          "key": "questAct 1Ogham ManorCandlemass",
+          "value": true
+        },
+        {
+          "key": "questAct 2Spires of DesharSisters of Garukhan Shrine",
+          "value": true
+        },
+        {
+          "key": "questAct 2Valley of the TitansMedallion",
+          "value": "None"
+        },
+        {
+          "key": "questAct 3Azak BogIgnagduk",
+          "value": true
+        },
+        {
+          "key": "questAct 3Jiquani's MachinariumBlackjaw",
+          "value": true
+        },
+        {
+          "key": "questAct 3Venom CryptsVenom Draught",
+          "value": "None"
+        },
+        {
+          "key": "questAct 4Abandoned PrisonGoddess of Justice",
+          "value": "None"
+        },
+        {
+          "key": "questAct 4Eye of HinekoraSilent Hall",
+          "value": true
+        },
+        {
+          "key": "questAct 4Eye of HinekoraTribal Medicine",
+          "value": "None"
+        },
+        {
+          "key": "questAct 4Halls Of The DeadNgamahu's Test",
+          "value": "None"
+        },
+        {
+          "key": "questAct 4Halls Of The DeadTasalio's Test",
+          "value": "None"
+        },
+        {
+          "key": "questAct 4Halls Of The DeadTawhoa's Test",
+          "value": "None"
+        },
+        {
+          "key": "questInterlude 2Khari CrossingMolten Shrine",
+          "value": true
+        },
+        {
+          "key": "questInterlude 2QimahSeven Pillars",
+          "value": "None"
+        },
+        {
+          "key": "questInterlude 3Kriar VillageLythara",
+          "value": true
+        },
+        {
+          "key": "raiseSpectreEnableBuffs",
+          "value": true
+        },
+        {
+          "key": "raiseSpectreEnableCurses",
+          "value": true
+        },
+        {
+          "key": "repeatMode",
+          "value": "AVERAGE"
+        },
+        {
+          "key": "resistancePenalty",
+          "value": -60
+        },
+        {
+          "key": "resourceGainMode",
+          "value": "AVERAGE"
+        },
+        {
+          "key": "summonCompanionEnableBuffs",
+          "value": true
+        },
+        {
+          "key": "summonCompanionEnableCurses",
+          "value": true
+        },
+        {
+          "key": "summonElementalRelicEnableAngerAura",
+          "value": true
+        },
+        {
+          "key": "summonElementalRelicEnableHatredAura",
+          "value": true
+        },
+        {
+          "key": "summonElementalRelicEnableWrathAura",
+          "value": true
+        },
+        {
+          "key": "targetBrandedEnemy",
+          "value": true
+        },
+        {
+          "key": "touchedDebuffsCount",
+          "value": 10
+        }
+      ],
+      "loadMs": 205,
+      "memoryKb": 278810.3828,
+      "metrics": {
+        "Armour": 194,
+        "AverageDamage": 8.8275,
+        "AverageHit": 8.8275,
+        "CastRate": 0.8333333333,
+        "ChaosResist": 0,
+        "ColdResist": -32,
+        "CombinedDPS": 7.356558002,
+        "CritChance": 7,
+        "CritMultiplier": 2,
+        "DeflectChance": 0,
+        "DeflectionRating": 0,
+        "EnergyShield": 62,
+        "Evasion": 30,
+        "FireResist": -20,
+        "FullDPS": 0,
+        "HitChance": 100,
+        "Life": 382,
+        "LifeRegen": 0,
+        "LightningResist": -50,
+        "Mana": 174,
+        "Speed": 0.8333333333,
+        "Spirit": 100,
+        "TotalDPS": 7.35625,
+        "TotalEHP": 331.5453384
+      },
+      "nodes": [
+        {
+          "alloc": true,
+          "allocMode": 0,
+          "id": 54447,
+          "name": "WITCH",
+          "present": true,
+          "type": "ClassStart"
+        },
+        {
+          "alloc": false,
+          "allocMode": 0,
+          "id": 4739,
+          "name": "Spell Damage",
+          "present": true,
+          "type": "Normal"
+        },
+        {
+          "alloc": false,
+          "allocMode": 0,
+          "id": 18845,
+          "name": "Spell Damage",
+          "present": true,
+          "type": "Normal"
+        },
+        {
+          "alloc": true,
+          "allocMode": 0,
+          "ascendancyName": "Infernalist",
+          "id": 32699,
+          "name": "Infernalist",
+          "present": true,
+          "type": "AscendClassStart"
+        },
+        {
+          "alloc": false,
+          "allocMode": 0,
+          "id": 1755,
+          "name": "Spell Damage",
+          "present": true,
+          "type": "Normal"
+        },
+        {
+          "alloc": false,
+          "allocMode": 0,
+          "id": 41965,
+          "name": "Spell Damage",
+          "present": true,
+          "type": "Normal"
+        }
+      ],
+      "skill": {
+        "baseFlags": ["projectile", "spell"],
+        "displayName": "Fireball",
+        "effectId": "FireballPlayer",
+        "enabled": true,
+        "gems": [
+          {
+            "enabled": true,
+            "gemId": "Metadata/Items/Gems/SkillGemFireball",
+            "level": 1,
+            "nameSpec": "Fireball",
+            "quality": 0,
+            "skillId": "FireballPlayer"
+          }
+        ],
+        "groupLabel": "",
+        "mainActiveSkill": 1,
+        "mainSocketGroup": 1,
+        "skillTypes": [
+          "Area",
+          "AreaSpell",
+          "Damage",
+          "Fire",
+          "Invokable",
+          "Mineable",
+          "Multicastable",
+          "Projectile",
+          "ProjectilesFromUser",
+          "Spell",
+          "Totemable",
+          "Trappable",
+          "Triggerable",
+          "Unleashable",
+          "UsableWhileMoving"
+        ],
+        "sourceGemName": "Fireball",
+        "sourceSkillId": "FireballPlayer",
+        "supports": []
+      }
+    }
+  },
+  "configuration": {
+    "clearingCustomModsChangedMetrics": false,
+    "conditionFullLifeBefore": true,
+    "error": "nil",
+    "feasible": true,
+    "restored": true,
+    "toggleChangedMetrics": false,
+    "toggleElapsedMs": 18
+  },
+  "determinism": {
+    "recalcMs": [21, 20, 23, 20, 17],
+    "stable": true
+  },
+  "itemMutation": {
+    "delta": [
+      {
+        "absoluteDelta": -50,
+        "after": 144,
+        "before": 194,
+        "metric": "Armour",
+        "percentDelta": -25.77319588
+      },
+      {
+        "absoluteDelta": 82,
+        "after": 464,
+        "before": 382,
+        "metric": "Life",
+        "percentDelta": 21.46596859
+      },
+      {
+        "absoluteDelta": -2,
+        "after": 172,
+        "before": 174,
+        "metric": "Mana",
+        "percentDelta": -1.149425287
+      },
+      {
+        "absoluteDelta": 65.09288852,
+        "after": 396.638227,
+        "before": 331.5453384,
+        "metric": "TotalEHP",
+        "percentDelta": 19.63317863
+      }
+    ],
+    "elapsedMs": 27,
+    "error": "nil",
+    "feasible": true,
+    "previousItemId": 5,
+    "rawAccepted": true,
+    "restored": true,
+    "slot": "Helmet"
+  },
+  "ok": true,
+  "passiveMutation": {
+    "allocMode": 0,
+    "delta": [
+      {
+        "absoluteDelta": 0.535,
+        "after": 5.885,
+        "before": 5.35,
+        "metric": "AverageDamage",
+        "percentDelta": 10
+      },
+      {
+        "absoluteDelta": 0.535,
+        "after": 5.885,
+        "before": 5.35,
+        "metric": "AverageHit",
+        "percentDelta": 10
+      },
+      {
+        "absoluteDelta": 0.4458570911,
+        "after": 4.904303557,
+        "before": 4.458446466,
+        "metric": "CombinedDPS",
+        "percentDelta": 10.00027912
+      },
+      {
+        "absoluteDelta": 0.4458333333,
+        "after": 4.904166667,
+        "before": 4.458333333,
+        "metric": "TotalDPS",
+        "percentDelta": 10
+      }
+    ],
+    "elapsedMs": 40,
+    "error": "nil",
+    "feasible": true,
+    "multiAllocated": true,
+    "multiDelta": [
+      {
+        "absoluteDelta": 0.535,
+        "after": 5.885,
+        "before": 5.35,
+        "metric": "AverageDamage",
+        "percentDelta": 10
+      },
+      {
+        "absoluteDelta": 0.535,
+        "after": 5.885,
+        "before": 5.35,
+        "metric": "AverageHit",
+        "percentDelta": 10
+      },
+      {
+        "absoluteDelta": 0.4458570911,
+        "after": 4.904303557,
+        "before": 4.458446466,
+        "metric": "CombinedDPS",
+        "percentDelta": 10.00027912
+      },
+      {
+        "absoluteDelta": 10,
+        "after": 10,
+        "before": 0,
+        "metric": "EnergyShield"
+      },
+      {
+        "absoluteDelta": 0.4458333333,
+        "after": 4.904166667,
+        "before": 4.458333333,
+        "metric": "TotalDPS",
+        "percentDelta": 10
+      },
+      {
+        "absoluteDelta": 3.67370794,
+        "after": 190.2980713,
+        "before": 186.6243634,
+        "metric": "TotalEHP",
+        "percentDelta": 1.968503937
+      }
+    ],
+    "multiElapsedMs": 38,
+    "nodeId": 4739,
+    "nodeName": "Spell Damage",
+    "restoreError": "nil",
+    "restored": true,
+    "secondNodeId": 44871,
+    "secondNodeName": "Energy Shield"
+  },
+  "pobBranch": "master",
+  "pobPlatform": "win32",
+  "pobVersion": "0.23.1",
+  "reloadB": {
+    "classInfo": {
+      "allocatedCount": 0,
+      "ascendClassId": 1,
+      "ascendancyAllocatedCount": 0,
+      "ascendancyName": "Infernalist",
+      "classId": 1,
+      "className": "Witch",
+      "targetVersion": "0_1",
+      "treeVersion": "0_5",
+      "weaponSet1Count": 0,
+      "weaponSet2Count": 0
+    },
+    "configuration": [
+      {
+        "key": "ChanceToIgnoreEnemyPhysicalDamageReductionMode",
+        "value": "AVERAGE"
+      },
+      {
+        "key": "ConcPathBypassCD",
+        "value": true
+      },
+      {
+        "key": "FlickerStrikeBypassCD",
+        "value": true
+      },
+      {
+        "key": "GamblesprintMovementSpeed",
+        "value": 20
+      },
+      {
+        "key": "SecondsSinceInevitableCrit",
+        "value": 10
+      },
+      {
+        "key": "VigilantStrikeBypassCD",
+        "value": true
+      },
+      {
+        "key": "companionInPresence",
+        "value": true
+      },
+      {
+        "key": "conditionChampionIntimidate",
+        "value": true
+      },
+      {
+        "key": "doomBlastSource",
+        "value": "vixen"
+      },
+      {
+        "key": "elementalConfluxElement",
+        "value": 1
+      },
+      {
+        "key": "enemyIsBoss",
+        "value": "Pinnacle"
+      },
+      {
+        "key": "enemySizePreset",
+        "value": "Medium"
+      },
+      {
+        "key": "inDemonForm",
+        "value": true
+      },
+      {
+        "key": "multiplierCurrentManaPercentage",
+        "value": 100
+      },
+      {
+        "key": "presetBossSkills",
+        "value": "None"
+      },
+      {
+        "key": "purpleFlameStacks",
+        "value": 10
+      },
+      {
+        "key": "questAct 1ClearfellBeira",
+        "value": true
+      },
+      {
+        "key": "questAct 1FreythornKing In The Mists",
+        "value": true
+      },
+      {
+        "key": "questAct 1Ogham ManorCandlemass",
+        "value": true
+      },
+      {
+        "key": "questAct 2Spires of DesharSisters of Garukhan Shrine",
+        "value": true
+      },
+      {
+        "key": "questAct 2Valley of the TitansMedallion",
+        "value": "None"
+      },
+      {
+        "key": "questAct 3Azak BogIgnagduk",
+        "value": true
+      },
+      {
+        "key": "questAct 3Jiquani's MachinariumBlackjaw",
+        "value": true
+      },
+      {
+        "key": "questAct 3Venom CryptsVenom Draught",
+        "value": "None"
+      },
+      {
+        "key": "questAct 4Abandoned PrisonGoddess of Justice",
+        "value": "None"
+      },
+      {
+        "key": "questAct 4Eye of HinekoraSilent Hall",
+        "value": true
+      },
+      {
+        "key": "questAct 4Eye of HinekoraTribal Medicine",
+        "value": "None"
+      },
+      {
+        "key": "questAct 4Halls Of The DeadNgamahu's Test",
+        "value": "None"
+      },
+      {
+        "key": "questAct 4Halls Of The DeadTasalio's Test",
+        "value": "None"
+      },
+      {
+        "key": "questAct 4Halls Of The DeadTawhoa's Test",
+        "value": "None"
+      },
+      {
+        "key": "questInterlude 2Khari CrossingMolten Shrine",
+        "value": true
+      },
+      {
+        "key": "questInterlude 2QimahSeven Pillars",
+        "value": "None"
+      },
+      {
+        "key": "questInterlude 3Kriar VillageLythara",
+        "value": true
+      },
+      {
+        "key": "raiseSpectreEnableBuffs",
+        "value": true
+      },
+      {
+        "key": "raiseSpectreEnableCurses",
+        "value": true
+      },
+      {
+        "key": "repeatMode",
+        "value": "AVERAGE"
+      },
+      {
+        "key": "resistancePenalty",
+        "value": -60
+      },
+      {
+        "key": "resourceGainMode",
+        "value": "AVERAGE"
+      },
+      {
+        "key": "summonCompanionEnableBuffs",
+        "value": true
+      },
+      {
+        "key": "summonCompanionEnableCurses",
+        "value": true
+      },
+      {
+        "key": "summonElementalRelicEnableAngerAura",
+        "value": true
+      },
+      {
+        "key": "summonElementalRelicEnableHatredAura",
+        "value": true
+      },
+      {
+        "key": "summonElementalRelicEnableWrathAura",
+        "value": true
+      },
+      {
+        "key": "targetBrandedEnemy",
+        "value": true
+      },
+      {
+        "key": "touchedDebuffsCount",
+        "value": 10
+      }
+    ],
+    "loadMs": 225,
+    "memoryKb": 312364.293,
+    "metrics": {
+      "Armour": 0,
+      "AverageDamage": 5.35,
+      "AverageHit": 5.35,
+      "CastRate": 0.8333333333,
+      "ChaosResist": 0,
+      "ColdResist": -50,
+      "CombinedDPS": 4.458446466,
+      "CritChance": 7,
+      "CritMultiplier": 2,
+      "DeflectChance": 0,
+      "DeflectionRating": 0,
+      "EnergyShield": 0,
+      "Evasion": 7,
+      "FireResist": -50,
+      "FullDPS": 0,
+      "HitChance": 100,
+      "Life": 254,
+      "LifeRegen": 0,
+      "LightningResist": -50,
+      "Mana": 130,
+      "Speed": 0.8333333333,
+      "Spirit": 100,
+      "TotalDPS": 4.458333333,
+      "TotalEHP": 186.6243634
+    },
+    "nodes": [
+      {
+        "alloc": true,
+        "allocMode": 0,
+        "id": 54447,
+        "name": "WITCH",
+        "present": true,
+        "type": "ClassStart"
+      },
+      {
+        "alloc": false,
+        "allocMode": 0,
+        "id": 4739,
+        "name": "Spell Damage",
+        "present": true,
+        "type": "Normal"
+      },
+      {
+        "alloc": false,
+        "allocMode": 0,
+        "id": 18845,
+        "name": "Spell Damage",
+        "present": true,
+        "type": "Normal"
+      },
+      {
+        "alloc": true,
+        "allocMode": 0,
+        "ascendancyName": "Infernalist",
+        "id": 32699,
+        "name": "Infernalist",
+        "present": true,
+        "type": "AscendClassStart"
+      },
+      {
+        "alloc": false,
+        "allocMode": 0,
+        "id": 1755,
+        "name": "Spell Damage",
+        "present": true,
+        "type": "Normal"
+      },
+      {
+        "alloc": false,
+        "allocMode": 0,
+        "id": 41965,
+        "name": "Spell Damage",
+        "present": true,
+        "type": "Normal"
+      }
+    ],
+    "skill": {
+      "baseFlags": ["projectile", "spell"],
+      "displayName": "Fireball",
+      "effectId": "FireballPlayer",
+      "enabled": true,
+      "gems": [
+        {
+          "enabled": true,
+          "gemId": "Metadata/Items/Gems/SkillGemFireball",
+          "level": 1,
+          "nameSpec": "Fireball",
+          "quality": 0,
+          "skillId": "FireballPlayer"
+        },
+        {
+          "enabled": true,
+          "gemId": "Metadata/Items/Gems/SkillGemRapidAttacksSupportThree",
+          "level": 1,
+          "nameSpec": "Rapid Attacks III",
+          "quality": 0,
+          "skillId": "SupportRapidAttacksPlayerThree"
+        }
+      ],
+      "groupLabel": "",
+      "mainActiveSkill": 1,
+      "mainSocketGroup": 2,
+      "skillTypes": [
+        "Area",
+        "AreaSpell",
+        "Damage",
+        "Fire",
+        "Invokable",
+        "Mineable",
+        "Multicastable",
+        "Projectile",
+        "ProjectilesFromUser",
+        "Spell",
+        "Totemable",
+        "Trappable",
+        "Triggerable",
+        "Unleashable",
+        "UsableWhileMoving"
+      ],
+      "sourceGemName": "Fireball",
+      "sourceSkillId": "FireballPlayer",
+      "supports": ["Rapid Attacks III"]
+    }
+  },
+  "skillMutation": {
+    "elapsedMs": 18,
+    "error": "nil",
+    "feasible": true,
+    "fromLevel": 1,
+    "gem": "Fireball",
+    "metricsChanged": true,
+    "restored": true,
+    "toLevel": 2
+  },
+  "stateIsolation": {
+    "bMatchesReload": true
+  },
+  "weaponSet": {
+    "allocModeBefore": 0,
+    "inspected": true,
+    "nodeAllocMode": 1,
+    "nodeId": 4739,
+    "requestedAllocMode": 1,
+    "restored": true
+  },
+  "runner": {
+    "coldProcessMs": 7559,
+    "pid": 24292,
+    "platform": "win32",
+    "osRelease": "10.0.26200",
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12650H",
+    "cpuCount": 16,
+    "totalMemoryMb": 16070,
+    "existingPobProcesses": ["7356 Path of Building-PoE2.exe"],
+    "pobDir": "C:\\Users\\Nitro5\\AppData\\Roaming\\Path of Building Community (PoE2)",
+    "buildLuaSha256Before": "4829ba2633aedf5324204dd180992ecc0c9d8bfade5e871a1001d551e37de683"
+  }
+}

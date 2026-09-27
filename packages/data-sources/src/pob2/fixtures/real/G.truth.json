@@ -1,0 +1,28 @@
+{
+  "caseId": "G",
+  "pobVersion": "0.23.1",
+  "pobCommit": "7d6f530cbdab20389ff8bc6ba97a37ac27f74e41",
+  "items": [
+    {
+      "slot": "Ring 1",
+      "name": "Left Loop, Iron Ring",
+      "base": "Iron Ring",
+      "rarity": "RARE",
+      "raw": "Rarity: RARE\nLeft Loop\nIron Ring\nLevelReq: 0\nImplicits: 0\n8% increased Cast Speed"
+    },
+    {
+      "slot": "Weapon 1",
+      "name": "Ash Wand, Withered Wand",
+      "base": "Withered Wand",
+      "rarity": "RARE",
+      "raw": "Rarity: RARE\nAsh Wand\nWithered Wand\nQuality: 0\nLevelReq: 0\nImplicits: 0\n10% increased Cast Speed\n80% increased Elemental Damage\n80% increased Elemental Damage with Attacks"
+    },
+    {
+      "slot": "Weapon 2",
+      "name": "Spare Focus, Twig Focus",
+      "base": "Twig Focus",
+      "rarity": "RARE",
+      "raw": "Rarity: RARE\nSpare Focus\nTwig Focus\nEnergy Shield: 12\nQuality: 0\nLevelReq: 0\nImplicits: 0\n12% increased Cast Speed"
+    }
+  ]
+}

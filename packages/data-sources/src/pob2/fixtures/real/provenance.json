@@ -1,0 +1,10 @@
+{
+  "application": "Path of Building (PoE2)",
+  "version": "0.23.1",
+  "versionDate": "2026-07-28",
+  "commit": "7d6f530cbdab20389ff8bc6ba97a37ac27f74e41",
+  "commitSource": "Public tag v0.23.1. The local changelog first line is VERSION[0.23.1][2026/07/28] and manifest.xml Version number is 0.23.1.",
+  "exportAction": "The installed application's Generate action: URL-safe Base64 of Deflate(SaveDB(\"code\")).",
+  "root": "PathOfBuilding2",
+  "builds": "Fresh unnamed Witch builds created inside that process. No saved character, community build, or share link was exported. Fixture E is a later Generate from the same 0.23.1 install: two ConfigSets, with the active set holding a boolean, a number, and a string Input. Fixture F is a later Generate from that install with locally entered rare, unique, ring, and weapon-set items. F.locality.json records expected locality for three lines in that saved text. Fixture G is a later Generate from that install with a wand, a focus, and a ring entered for Cast Speed and Elemental Damage locality. G.locality.json records those expected localities."
+}

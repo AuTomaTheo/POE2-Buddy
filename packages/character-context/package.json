@@ -1,0 +1,16 @@
+{
+  "name": "@poe2-helper/character-context",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Deterministic build-context relevance. Not a value, score, or upgrade ranking.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit --pretty false"
+  },
+  "dependencies": {
+    "zod": "^3.25.76"
+  }
+}

@@ -10,5 +10,10 @@
     "skipLibCheck": true,
     "types": ["node"]
   },
-  "include": ["vitest.config.mts", "tests/**/*.ts"]
+  "include": [
+    "vitest.config.mts",
+    "vitest.pob2.config.mts",
+    "tests/**/*.ts",
+    "scripts/**/*.ts"
+  ]
 }

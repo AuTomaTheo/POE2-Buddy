@@ -1,1 +1,13 @@
-Reserved for the passive-tree graph and path rules. No implementation yet.
+# Passive engine
+
+Builds an adjacency graph from a `PassiveTreeSnapshot` and enumerates main-tree paths. This package does not score builds or render UI.
+
+`buildPassiveGraph` returns neighbors for any known node. Unknown node queries throw. Problems in the input are listed on `issues`: unknown ids, one-way links, edge mismatches, duplicate ids, and nodes with no neighbors.
+
+Travel nodes use the domain kind `small`. A node is an ascendancy member when it has `ascendancyId` or the kind `ascendancy-start`.
+
+`assessOptimizationReadiness` reports whether a fixture and graph are safe for main-tree path search. `requireOptimizationReadiness` throws `OptimizationNotReadyError` when they are not. Isolated nodes are diagnostic. Duplicate ids, unknown references, one-way links, and edge mismatches block that search. The gate does not judge ascendancy access, weapon-set rules, or point totals from level or quests.
+
+Path search is `enumerateMainTreePaths`. It calls `requireOptimizationReadiness`, then refuses a shared allocation that does not connect to the class start. Priced main-tree nodes cost one point through `passiveNodePointCost`. Nodes flagged `isFree` are not priced: the pinned export does not say what that flag costs, and every such node is an ascendancy notable. Candidate paths leave those nodes out. A shared allocation that includes one throws. Weapon-set-only ids stay outside this rule. `searchCompleteness` is `exhaustive` or `truncated`. Later scoring may call a truncated result only `best path found within search limits`. The default search stops at 5 points, 500 paths, or 20,000 expansions.
+
+`extractPassiveNodeStats` reads each node's `rawStats` in order. A line is recognized by the STEP-007A whole-line templates first, so those stat ids stay the same. A trailing word `taken` is left for the grammar, which sets damage direction. Anything those templates miss is passed to a tokenizer and a grammar. Newline-separated clauses are kept only when every clause parses. `Gain Deflection Rating equal to N% of Evasion Rating` is operation `derived-from`, semantic id `deflection-from-evasion`, and the percent is the ratio. `pathSemanticCoverage` counts stat lines on the nodes it is given. `searchCompleteness` stays on the path search. `assessStatScoringReadiness` is `ready` on the pinned `0.5.5` tree. Outgoing less-damage does not occur on a passive node, so it does not block. Damage-type conversion stays partially supported and is listed, not blocking, because the unsupported line stays visible to `pathSemanticCoverage`. A later score must keep that coverage and `searchCompleteness` as separate fields. This package still does not score those values.
