@@ -23,3 +23,10 @@ coverage/
 
 # Isolated PoB2 calculator copy. Do not commit a Path of Building runtime.
 var/pob2-runtime/
+
+# Full RePoE crafting export and normalized snapshot. Redistribution is not cleared.
+var/crafting-source/
+var/crafting-data/
+
+# Historical and current community weight tables. Redistribution is not cleared.
+var/crafting-community-weights/

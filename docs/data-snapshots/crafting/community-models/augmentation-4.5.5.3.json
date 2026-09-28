@@ -1,0 +1,33 @@
+{
+  "ok": true,
+  "mechanicId": "add-random-explicit",
+  "modelKind": "community-derived",
+  "validation": "blocked",
+  "officialEvidence": "blocked",
+  "probabilityStatus": "blocked",
+  "step021": "BLOCKED",
+  "checksum": "sha256:f62c0a05fd515cc10ddf8c310ac8b7b341eb4a2f73571ac2e13d7078a16874ae",
+  "binding": {
+    "snapshotChecksum": "sha256:dbfd7c4286e1e340a180ef91cdab621e5b5b612faccfc8688376da2bc6b610a8",
+    "sourceCommit": "b818b843337cae43b090b272fd98bbc0fd3a34f3",
+    "communityPatch": "4.5.5.3",
+    "communityLabel": "0.5.5.3",
+    "observedOn": "2026-09-27"
+  },
+  "limitations": [
+    "Craft of Exile power is not a single scale of the RePoE spawn weight.",
+    "Dictionary overlap is not an Orb of Augmentation candidate pool.",
+    "No calculator probability was reproduced.",
+    "Greater and Perfect minimum modifier levels are tool properties, not item text.",
+    "The direct-evidence model stays blocked."
+  ],
+  "differential": {
+    "rustedCuirassInspectionPresent": 144,
+    "ironRingInspectionPresent": 203,
+    "witheredWandInspectionPresent": 118,
+    "bodyDistinctPowerRatios": 134,
+    "ringDistinctPowerRatios": 121,
+    "greaterMinimumModifierLevel": 44,
+    "perfectMinimumModifierLevel": 70
+  }
+}

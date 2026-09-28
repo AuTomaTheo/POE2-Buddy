@@ -2,16 +2,16 @@ import {
   gggLiveImportPublicStatus,
   readGggLiveImportReadiness,
 } from "@poe2-helper/data-sources";
-import { ANALYSIS_FIXTURES } from "../server/analyze-passive-build";
-import { AnalysisScreen } from "./analysis-screen";
+import { Dashboard } from "./dashboard";
 
 export default function Home() {
+  const liveImport = gggLiveImportPublicStatus(
+    readGggLiveImportReadiness(process.env),
+  );
   return (
-    <AnalysisScreen
-      fixtures={ANALYSIS_FIXTURES}
-      liveImport={gggLiveImportPublicStatus(
-        readGggLiveImportReadiness(process.env),
-      )}
+    <Dashboard
+      gggEnabled={liveImport.enabled}
+      gggMessage={liveImport.message}
     />
   );
 }

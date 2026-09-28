@@ -1,0 +1,17 @@
+{
+  "name": "@poe2-helper/crafting-planner",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Explicit craft-target planner. Not a crafting strategy or probability engine.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit --pretty false"
+  },
+  "dependencies": {
+    "@poe2-helper/crafting-data": "0.1.0",
+    "zod": "^3.25.76"
+  }
+}

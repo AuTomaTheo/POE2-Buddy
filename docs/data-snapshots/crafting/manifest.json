@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "provider": "repoe-fork/poe2",
+  "classification": "community",
+  "commit": "b818b843337cae43b090b272fd98bbc0fd3a34f3",
+  "sourceVersion": "4.5.5.2",
+  "fetchedAt": "2026-09-27T14:26:54.311Z",
+  "rawFiles": [
+    {
+      "path": "version.txt",
+      "sha256": "sha256:b904ae522c1827a18760f2a362e92b89bf72d7b19b9b42f50b6b1d26b8afc2e2"
+    },
+    {
+      "path": "exported-version.txt",
+      "sha256": "sha256:895cb9e6a68bc903aeea1a52b73c07db35d13e29162af56a71be9dcb54f6f574"
+    },
+    {
+      "path": "data/item_classes.json",
+      "sha256": "sha256:c235f54b1801a84bc03c121072d2003615b8efd40be423cf498c9b6965d35d60"
+    },
+    {
+      "path": "data/tags.json",
+      "sha256": "sha256:d80ec3e84684f20f02cdf3429a23957580f68064ed90d528c8a254ad143c3cc1"
+    },
+    {
+      "path": "data/base_items.json",
+      "sha256": "sha256:86932dabccb37552e0d38b3abf996edebea73f1946bfa941ed7992c05f16fcd3"
+    },
+    {
+      "path": "data/mods.json",
+      "sha256": "sha256:3ee691822595d8c91c96416583d1adc9c5e9884232db6cc6f295e79d15d85a07"
+    },
+    {
+      "path": "data/stat_translations/stat_descriptions.json",
+      "sha256": "sha256:1d4fca41f24520f937ad47ab607ef0ff1e94113c21ae186a4275cdc13d7beb76"
+    }
+  ],
+  "normalizedChecksum": "sha256:dbfd7c4286e1e340a180ef91cdab621e5b5b612faccfc8688376da2bc6b610a8",
+  "redistribution": "blocked",
+  "licenseSummary": "repoe-fork/poe2 reports no GitHub license. Parent RePoE LICENSE.md is MIT for the software and states that generated data files are owned by Grinding Gear Games and shall not be used or published except in accordance with their terms of use. This repository does not publish the full export.",
+  "compatibility": {
+    "status": "unknown",
+    "sourceGameVersion": "4.5.5.2",
+    "schemaVersion": 1,
+    "note": "Export label 4.5.5.2 is metadata only. It is not compared with passive-tree pin 0.5.5 or PoB tree key 0_5. Scoped planner approval is a separate checksum-bound report."
+  },
+  "readiness": "partial",
+  "coverage": {
+    "baseCount": 5496,
+    "modifierCount": 16784,
+    "translationCount": 10750,
+    "resolvedTranslationCount": 5000,
+    "unresolvedTranslationCount": 5750,
+    "prefixCount": 2767,
+    "suffixCount": 2458,
+    "otherGenerationCount": 11559,
+    "absentBaseDomainCount": 0,
+    "sourceStringUndefinedDomainCount": 3340,
+    "emptyStatModifierCount": 447,
+    "grantsEffectsNotInterpretedCount": 28,
+    "generationWeightRuleCount": 0
+  },
+  "gearBaseResolution": [
+    {
+      "baseName": "Rusted Cuirass",
+      "itemClass": "Body Armour",
+      "status": "resolved",
+      "id": "Metadata/Items/Armours/BodyArmours/FourBodyStr1"
+    },
+    {
+      "baseName": "Linen Wraps",
+      "itemClass": "Gloves",
+      "status": "resolved",
+      "id": "Metadata/Items/Armours/Gloves/FourGlovesDexInt2"
+    },
+    {
+      "baseName": "Wrapped Greathelm",
+      "itemClass": "Helmet",
+      "status": "resolved",
+      "id": "Metadata/Items/Armours/Helmets/FourHelmetStr3"
+    },
+    {
+      "baseName": "Iron Ring",
+      "itemClass": "Ring",
+      "status": "resolved",
+      "id": "Metadata/Items/Rings/FourRing1"
+    },
+    {
+      "baseName": "Ruby Ring",
+      "itemClass": "Ring",
+      "status": "resolved",
+      "id": "Metadata/Items/Rings/FourRing3"
+    },
+    {
+      "baseName": "Withered Wand",
+      "itemClass": "Wand",
+      "status": "resolved",
+      "id": "Metadata/Items/Weapons/OneHandWeapons/Wands/FourWand1"
+    },
+    {
+      "baseName": "Twig Focus",
+      "itemClass": "Focus",
+      "status": "resolved",
+      "id": "Metadata/Items/Armours/Focii/FourFocus1"
+    }
+  ],
+  "spotChecks": [
+    "Rusted Cuirass identity, class, domain, and str_armour tag",
+    "Strength1 level, suffix kind, group, zero default weight, and range",
+    "LocalBaseArmourAndEvasionRating1 stat order and weight order",
+    "IncreasedLife12 required item level 75",
+    "HybridStrDex keeps HybridStat and affix kind other",
+    "checksum matches semantic records"
+  ],
+  "datasetDiff": {
+    "basesAdded": [],
+    "basesRemoved": [],
+    "basesChanged": [],
+    "modsAdded": [],
+    "modsRemoved": [],
+    "modsChanged": [],
+    "statsAdded": [],
+    "statsRemoved": [],
+    "statsChanged": [],
+    "domainsAdded": [],
+    "generationTypesAdded": [],
+    "unknownValuesAdded": [],
+    "safety": "unclassified"
+  },
+  "localSnapshot": "var/crafting-data/snapshot.json",
+  "rollbackSnapshot": "var/crafting-data/previous-snapshot.json",
+  "promotion": {
+    "normalized": true,
+    "validated": true,
+    "plannerApproved": true,
+    "distributionApproved": false
+  },
+  "plannerReadiness": "ready",
+  "compatibilityReport": "docs/data-snapshots/crafting/compatibility.json"
+}

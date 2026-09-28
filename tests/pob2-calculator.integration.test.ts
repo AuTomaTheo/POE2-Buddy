@@ -9,7 +9,9 @@ import {
   evaluatePassiveCandidate,
   readRuntimeManifest,
   runtimeFingerprint,
+  type ItemDeltaResult,
 } from "@poe2-helper/pob2-calculator";
+import { compareUpgradeCandidates } from "@poe2-helper/upgrade-engine";
 import { afterAll, describe, expect, it } from "vitest";
 
 const repositoryRoot = path.resolve(
@@ -65,6 +67,47 @@ const wrappedGreathelm = [
   "Implicits: 0",
   "+80 to maximum Life",
 ].join("\n");
+
+function lifePercent(result: ItemDeltaResult): number | null {
+  return (
+    result.metrics.find((metric) => metric.id === "Life")?.percentDelta ?? null
+  );
+}
+
+function supplied(
+  id: string,
+  label: string,
+  amount: number,
+  result: ItemDeltaResult,
+) {
+  return {
+    id,
+    slot: "helmet",
+    label,
+    rawChecksum: result.candidateItem.rawChecksum ?? "",
+    price: { amount, currency: "chaos" as const, source: "fixture" as const },
+    measurement: {
+      ok: true as const,
+      metrics: result.metrics.map((metric) => ({
+        id: metric.id,
+        before: metric.before,
+        after: metric.after,
+        absoluteDelta: metric.absoluteDelta,
+        percentDelta: metric.percentDelta,
+      })),
+      provenance: {
+        pobVersion: result.provenance.pobVersion,
+        pobTreeKey: result.provenance.pobTreeKey,
+        buddyTreeVersion: result.provenance.buddyTreeVersion,
+        adapterVersion: result.provenance.adapterVersion,
+        protocolVersion: result.provenance.protocolVersion,
+        buildChecksum: result.provenance.buildChecksum,
+        runtimeFingerprint: result.provenance.runtimeFingerprint,
+        skillEffectId: result.skill.effectId,
+      },
+    },
+  };
+}
 
 describe("real PoB2 worker", () => {
   it("measures fixture B node 4739 and restores the baseline", async () => {
@@ -253,6 +296,73 @@ describe("real PoB2 worker", () => {
     expect(mana?.after).toBe(172);
     note(
       `itemReplacementMs=${itemMs} slot=helmet build=${decoded.checksum} candidate=${outcome.result.candidateItem.rawChecksum} restoreVerified=true fingerprint=${manifest.runtimeFingerprint}`,
+    );
+  }, 120_000);
+
+  it("compares two explicit fixture F helmets by measured Life", async () => {
+    const decoded = xmlFor("F.code.txt");
+    const lesserHelm = [
+      "Rarity: RARE",
+      "Lesser Helm",
+      "Wrapped Greathelm",
+      "Armour: 40",
+      "Quality: 0",
+      "LevelReq: 16",
+      "Implicits: 0",
+      "+20 to maximum Life",
+    ].join("\n");
+    const greater = await evaluateItemReplacement({
+      ...shared,
+      xml: decoded.xml,
+      buildChecksum: decoded.checksum,
+      item: {
+        slot: "helmet",
+        rawItemText: wrappedGreathelm,
+        label: "Spike Helm",
+      },
+    });
+    const lesser = await evaluateItemReplacement({
+      ...shared,
+      xml: decoded.xml,
+      buildChecksum: decoded.checksum,
+      item: { slot: "helmet", rawItemText: lesserHelm, label: "Lesser Helm" },
+    });
+    expect(greater.ok).toBe(true);
+    expect(lesser.ok).toBe(true);
+    if (!greater.ok || !lesser.ok) return;
+    expect(greater.result.restoreVerified).toBe(true);
+    expect(lesser.result.restoreVerified).toBe(true);
+    expect(greater.result.provenance.runtimeFingerprint).toBe(
+      lesser.result.provenance.runtimeFingerprint,
+    );
+    const compared = compareUpgradeCandidates({
+      selectedMetric: "Life",
+      budget: { amount: 100, currency: "chaos" },
+      normalization: null,
+      candidates: [
+        supplied("greater", "Spike Helm", 40, greater.result),
+        supplied("lesser", "Lesser Helm", 80, lesser.result),
+      ],
+    });
+    expect(compared.ok).toBe(true);
+    if (!compared.ok) return;
+    expect("score" in compared.result).toBe(false);
+    const greaterLife = lifePercent(greater.result);
+    const lesserLife = lifePercent(lesser.result);
+    expect(greaterLife).not.toBeNull();
+    expect(lesserLife).not.toBeNull();
+    if (greaterLife === null || lesserLife === null) return;
+    const greaterEfficiency = greaterLife / 40;
+    const lesserEfficiency = lesserLife / 80;
+    const expectedFirst =
+      greaterEfficiency > lesserEfficiency ||
+      (greaterEfficiency === lesserEfficiency && greaterLife >= lesserLife)
+        ? "greater"
+        : "lesser";
+    expect(compared.result.ordering[0]).toBe(expectedFirst);
+    expect(compared.result.readiness).toBe("ready");
+    note(
+      `upgradeComparison greaterLifePercent=${greaterLife} lesserLifePercent=${lesserLife} first=${compared.result.ordering[0]} fingerprint=${greater.result.provenance.runtimeFingerprint}`,
     );
   }, 120_000);
 

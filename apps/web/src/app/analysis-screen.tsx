@@ -1,12 +1,26 @@
 "use client";
 
-import { useActionState, useRef, useState, type ChangeEvent } from "react";
+import {
+  useActionState,
+  useEffect,
+  useRef,
+  useState,
+  type ChangeEvent,
+} from "react";
 import { analyzePassiveBuild } from "./actions";
+import { Alert } from "./shared/alert";
+import { LoadingNote } from "./shared/loading-note";
+import { exportInputProblem } from "./build/import-validation";
+import { START_DEMOS } from "./start/demos";
+import { buildIdentity } from "./shell/build-identity";
+import { useBuildSession } from "./shell/build-session";
 import { CharacterDelta } from "./character-delta";
+import { UpgradeComparison } from "./upgrade-comparison";
 import type {
   AnalysisResult,
   Pob2AnalysisView,
 } from "../server/analyze-passive-build";
+import type { ExplanationDocument } from "@poe2-helper/ai-explainer";
 import type { GearAnalysis } from "@poe2-helper/gear-engine";
 import type { RecommendationClaim } from "@poe2-helper/scoring-engine";
 import {
@@ -32,6 +46,9 @@ const CLAIM_TEXT: Record<RecommendationClaim, string> = {
 };
 
 type FixtureOption = { id: string; label: string };
+type ImportChoice = "fixture" | "pob2" | "ggg";
+
+const FIXTURE_DEMOS = START_DEMOS.filter((demo) => demo.kind === "fixture");
 
 function formatScore(value: number): string {
   return String(value);
@@ -40,34 +57,103 @@ function formatScore(value: number): string {
 export function AnalysisScreen({
   fixtures,
   liveImport,
+  initialSource,
+  initialDemoId,
+  initialObjective,
+  initialPob2Code,
 }: {
   fixtures: readonly FixtureOption[];
   liveImport: { enabled: boolean; message: string };
+  initialSource: "fixture" | "pob2";
+  initialDemoId: string;
+  initialObjective: "offensive" | "defensive" | "balanced";
+  initialPob2Code: string;
 }) {
-  const [importSource, setImportSource] = useState<"fixture" | "pob2">(
-    "fixture",
-  );
+  const [pob2Draft, setPob2Draft] = useState(initialPob2Code);
+  const [inputProblem, setInputProblem] = useState<string | null>(null);
+  const resultRef = useRef<HTMLDivElement>(null);
+  const [importSource, setImportSource] = useState<ImportChoice>(initialSource);
   const importSourceRef = useRef(importSource);
-  function chooseImportSource(value: "fixture" | "pob2") {
+  function chooseImportSource(value: ImportChoice) {
+    setInputProblem(null);
     importSourceRef.current = value;
     setImportSource(value);
   }
+  const [fixtureDemoId, setFixtureDemoId] = useState(
+    initialSource === "fixture" && initialDemoId
+      ? initialDemoId
+      : "passive-recommendation",
+  );
+  const [autoDemoId, setAutoDemoId] = useState(
+    initialSource === "pob2" ? initialDemoId : "",
+  );
+  const formRef = useRef<HTMLFormElement>(null);
+  const autoRan = useRef(false);
   const [submittedPob2Code, setSubmittedPob2Code] = useState("");
+  const { setBuild } = useBuildSession();
   const [result, action, pending] = useActionState(
-    async (_previous: AnalysisResult | null, formData: FormData) => {
+    async (_previous: AnalysisResult | null, formData: FormData): Promise<AnalysisResult> => {
       const pob2Code = String(formData.get("pob2Code") ?? "");
+      const demoId = String(formData.get("demoId") ?? "");
+      setAutoDemoId("");
       setSubmittedPob2Code(importSourceRef.current === "pob2" ? pob2Code : "");
-      return analyzePassiveBuild({
-        fixtureId: String(formData.get("fixtureId") ?? ""),
-        fixtureJson: String(formData.get("fixtureJson") ?? ""),
-        objective: String(formData.get("objective") ?? ""),
-        pointBudget: String(formData.get("pointBudget") ?? ""),
-        importSource: importSourceRef.current,
-        pob2Code,
-      });
+      try {
+        return await analyzePassiveBuild({
+          fixtureId: String(formData.get("fixtureId") ?? ""),
+          fixtureJson: String(formData.get("fixtureJson") ?? ""),
+          objective: String(formData.get("objective") ?? ""),
+          pointBudget: String(formData.get("pointBudget") ?? ""),
+          importSource: importSourceRef.current === "pob2" ? "pob2" : "fixture",
+          pob2Code,
+          demoId,
+        });
+      } catch {
+        return {
+          ok: false as const,
+          message:
+            "The build could not be analyzed. Your input is still here; please try again.",
+        };
+      }
     },
     null,
   );
+
+  useEffect(() => {
+    if (!result) return;
+    resultRef.current?.focus();
+    setBuild(
+      buildIdentity({
+        name: result.pob2?.name ?? (result.ok ? result.characterName : null),
+        className:
+          result.pob2?.className ??
+          (result.ok ? result.className : null) ??
+          result.context?.ascendancy.className ??
+          null,
+        ascendancy:
+          result.pob2?.ascendancy ?? result.context?.ascendancy.name ?? null,
+        level: result.pob2?.level ?? null,
+        primarySkill:
+          result.context?.primarySkill.name ??
+          result.pob2?.mainSkillName ??
+          null,
+        source: result.context?.source ?? (result.pob2 ? "pob2" : "fixture"),
+        readiness: result.context?.readiness.status ?? null,
+      }),
+    );
+  }, [result, setBuild]);
+
+  useEffect(() => {
+    if (!initialDemoId || autoRan.current) return;
+    autoRan.current = true;
+    formRef.current?.requestSubmit();
+  }, [initialDemoId]);
+
+  useEffect(() => {
+    if (!result?.ok) return;
+    const hash = window.location.hash;
+    if (hash.length === 0) return;
+    document.getElementById(hash.slice(1))?.scrollIntoView();
+  }, [result]);
 
   function loadFile(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
@@ -80,104 +166,230 @@ export function AnalysisScreen({
   }
 
   return (
-    <main className="analysis">
-      <h1>PoE2 Helper</h1>
+    <main className="analysis" id="build">
       <p>
-        Analyze a passive-tree fixture. The score is a heuristic. It is not DPS
-        or EHP. Imported character data is not a character-aware score.
+        Load a demo build or paste a Path of Building 2 export. The score is a
+        heuristic. It is not DPS or EHP. Imported character data is not a
+        character-aware score.
       </p>
-      {liveImport.enabled ? (
-        <p>
-          <a href="/api/auth/ggg/start">Connect GGG account</a>
-        </p>
-      ) : (
-        <p>{liveImport.message}</p>
-      )}
-      <form action={action} className="analysis-form">
-        <label>
-          Import source
-          <select
-            name="importSource"
-            value={importSource}
-            onChange={(event) =>
-              chooseImportSource(
-                event.target.value === "pob2" ? "pob2" : "fixture",
-              )
-            }
-          >
-            <option value="fixture">Fixture</option>
-            <option value="pob2">PoB2</option>
-          </select>
-        </label>
-        {importSource === "fixture" ? (
-          <>
-            <label>
-              Fixture
-              <select name="fixtureId" defaultValue={fixtures[0]?.id ?? ""}>
-                {fixtures.map((fixture) => (
-                  <option key={fixture.id} value={fixture.id}>
-                    {fixture.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Import fixture JSON
-              <input
-                type="file"
-                accept="application/json,.json"
-                onChange={loadFile}
-              />
-            </label>
-            <label>
-              Or paste fixture JSON. When this box is not empty, it is used
-              instead of the fixture list.
-              <textarea name="fixtureJson" rows={5} />
-            </label>
-          </>
-        ) : (
+      <form
+        ref={formRef}
+        action={action}
+        className="analysis-form"
+        aria-busy={pending}
+        onSubmit={(event) => {
+          if (importSource !== "pob2" || autoDemoId) return;
+          const problem = exportInputProblem(pob2Draft);
+          setInputProblem(problem);
+          if (problem) {
+            event.preventDefault();
+            formRef.current
+              ?.querySelector<HTMLTextAreaElement>('[name="pob2Code"]')
+              ?.focus();
+          }
+        }}
+      >
+        <fieldset disabled={pending} className="import-fields">
+          <legend>Load your build</legend>
           <label>
-            Paste PoB2 export
-            <textarea name="pob2Code" rows={5} />
+            Import source
+            <select
+              name="importSource"
+              value={importSource}
+              onChange={(event) =>
+                chooseImportSource(
+                  event.target.value === "pob2"
+                    ? "pob2"
+                    : event.target.value === "ggg"
+                      ? "ggg"
+                      : "fixture",
+                )
+              }
+            >
+              <option value="pob2">Path of Building</option>
+              <option value="fixture">Demo build</option>
+              <option value="ggg">GGG account</option>
+            </select>
           </label>
-        )}
-        <label>
-          Objective
-          <select name="objective" defaultValue="offensive">
-            <option value="offensive">Offensive</option>
-            <option value="defensive">Defensive</option>
-            <option value="balanced">Balanced</option>
-          </select>
-        </label>
-        <label>
-          Passive point budget
-          <input
-            name="pointBudget"
-            type="number"
-            min={0}
-            step={1}
-            defaultValue={5}
-          />
-        </label>
-        <button type="submit" disabled={pending}>
-          {pending
-            ? "Analyzing…"
-            : importSource === "pob2"
-              ? "Import / Analyze"
-              : "Analyze"}
-        </button>
+          {importSource === "pob2" ? (
+            <>
+              {autoDemoId ? (
+                <input type="hidden" name="demoId" value={autoDemoId} />
+              ) : null}
+              <label>
+                Paste your PoB2 export code
+                <textarea
+                  name="pob2Code"
+                  rows={5}
+                  value={pob2Draft}
+                  onChange={(event) => {
+                    setPob2Draft(event.target.value);
+                    setAutoDemoId("");
+                    setInputProblem(null);
+                  }}
+                  aria-invalid={!!inputProblem}
+                  aria-describedby="pob-import-help pob-import-feedback"
+                  spellCheck={false}
+                />
+              </label>
+              <p id="pob-import-help">
+                Paste the export code, not a share link. It is used for this
+                analysis and is not saved in browser storage.
+              </p>
+              <div id="pob-import-feedback" aria-live="polite">
+                {inputProblem}
+              </div>
+              <button
+                type="button"
+                className="button-secondary"
+                onClick={async () => {
+                  try {
+                    setPob2Draft(await navigator.clipboard.readText());
+                    setAutoDemoId("");
+                    setInputProblem(null);
+                  } catch {
+                    setInputProblem(
+                      "Clipboard access is unavailable. Click the code box and paste with Ctrl+V (or Command+V).",
+                    );
+                  }
+                }}
+              >
+                Paste from clipboard
+              </button>
+              <details>
+                <summary>Where do I find this?</summary>
+                <p>
+                  In Path of Building 2, copy the build export code and paste it
+                  here. Buddy does not open share links.
+                </p>
+                <p>
+                  Use the PoE2 version of Path of Building. Copy its generated
+                  export code in full. If you only have a link, open that link
+                  and copy its code first.
+                </p>
+                <a href="/build?demo=fireball-witch">
+                  Try a Fireball Witch example
+                </a>
+              </details>
+            </>
+          ) : null}
+          {importSource === "fixture" ? (
+            <>
+              <label>
+                Demo build
+                <select
+                  name="demoId"
+                  value={fixtureDemoId}
+                  onChange={(event) => setFixtureDemoId(event.target.value)}
+                >
+                  {FIXTURE_DEMOS.map((demo) => (
+                    <option key={demo.id} value={demo.id}>
+                      {demo.title}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <details>
+                <summary>Advanced testing</summary>
+                <p>
+                  Paste fixture JSON to replace the selected demo. When this box
+                  is not empty, it is used instead of the demo.
+                </p>
+                <label>
+                  Import fixture JSON
+                  <input
+                    type="file"
+                    accept="application/json,.json"
+                    onChange={loadFile}
+                  />
+                </label>
+                <label>
+                  Fixture JSON
+                  <textarea name="fixtureJson" rows={5} />
+                </label>
+                <p className="technical">
+                  Known fixture ids:{" "}
+                  {fixtures.map((fixture) => fixture.id).join(", ")}
+                </p>
+              </details>
+            </>
+          ) : null}
+          {importSource === "ggg" ? (
+            liveImport.enabled ? (
+              <p>
+                <a href="/api/auth/ggg/start">Connect GGG account</a>
+              </p>
+            ) : (
+              <Alert tone="info">{liveImport.message}</Alert>
+            )
+          ) : null}
+          {importSource === "ggg" ? null : (
+            <>
+              <label>
+                Objective
+                <select name="objective" defaultValue={initialObjective}>
+                  <option value="offensive">Offensive</option>
+                  <option value="defensive">Defensive</option>
+                  <option value="balanced">Balanced</option>
+                </select>
+              </label>
+              <label>
+                Passive point budget
+                <input
+                  name="pointBudget"
+                  type="number"
+                  min={0}
+                  step={1}
+                  defaultValue={5}
+                />
+              </label>
+              <button type="submit" disabled={pending}>
+                {pending
+                  ? "Analyzing…"
+                  : importSource === "pob2"
+                    ? "Import and analyze build"
+                    : "Analyze demo"}
+              </button>
+              {pending ? (
+                <LoadingNote>
+                  {importSource === "pob2"
+                    ? "Importing Path of Building…"
+                    : "Analyzing passive tree…"}
+                </LoadingNote>
+              ) : null}
+            </>
+          )}
+        </fieldset>
       </form>
-      {result?.pob2 ? <Pob2Summary view={result.pob2} /> : null}
-      {result?.context ? <ContextSummary context={result.context} /> : null}
-      {result?.gear ? <GearSummary gear={result.gear} /> : null}
-      {result?.ok === false ? (
-        <p className="analysis-error" role="alert">
-          {result.message}
-        </p>
-      ) : null}
-      {result?.ok === true ? (
-        <AnalysisReport result={result} pob2Code={submittedPob2Code} />
-      ) : null}
+      <div
+        ref={resultRef}
+        tabIndex={-1}
+        className="import-result"
+        aria-label="Import result"
+      >
+        {result ? (
+          <h2>
+            {result.ok
+              ? "Build loaded · Analysis complete"
+              : "Could not complete this analysis"}
+          </h2>
+        ) : null}
+        {result?.ok === false ? (
+          <p>
+            Check the export code and the analysis settings, then try again.
+            Details below explain what prevented analysis.
+          </p>
+        ) : null}
+        {result?.pob2 ? <Pob2Summary view={result.pob2} /> : null}
+        {result?.context ? <ContextSummary context={result.context} /> : null}
+        {result?.gear ? <GearSummary gear={result.gear} /> : null}
+        {result?.ok === false ? (
+          <Alert tone="blocking">{result.message}</Alert>
+        ) : null}
+        {result?.ok === true ? (
+          <AnalysisReport result={result} pob2Code={submittedPob2Code} />
+        ) : null}
+      </div>
     </main>
   );
 }
@@ -185,54 +397,65 @@ export function AnalysisScreen({
 function Pob2Summary({ view }: { view: Pob2AnalysisView }) {
   return (
     <section>
-      <h2>PoB2 import</h2>
-      <p>Status: {view.status}</p>
+      <h2>Imported build</h2>
       <p>Build: {view.name ?? "unavailable"}</p>
       <p>Class: {view.className ?? "unavailable"}</p>
       <p>Level: {view.level ?? "unavailable"}</p>
       <p>Ascendancy: {view.ascendancy ?? "unavailable"}</p>
       <p>
-        Ascendancy passives:{" "}
-        {view.ascendancyPassiveIds.length > 0
-          ? view.ascendancyPassiveIds.join(", ")
-          : "none"}
-      </p>
-      <p>PoB tree key: {view.treeVersion ?? "unavailable"}</p>
-      <p>Active GGG data version: {view.activeTreeVersion ?? "unavailable"}</p>
-      <p>
-        Passive ids:{" "}
-        {view.unknownPassiveIds.length > 0
-          ? "unknown ids present"
-          : "all imported passive ids recognized"}
-      </p>
-      <p>Skill groups: {view.skillGroupCount}</p>
-      <p>
-        Main skill:{" "}
+        Primary skill:{" "}
         {view.mainSkillResolved
-          ? (view.mainSkillName ?? "resolved")
-          : "unresolved"}
+          ? (view.mainSkillName ?? "Not identified")
+          : "Not identified"}
       </p>
-      <p>Supports: {view.supportCount}</p>
-      <p>Unresolved-role gems: {view.unresolvedRoleGemCount}</p>
-      <p>Equipment: {view.equipmentCount}</p>
-      <p>
-        Configuration:{" "}
-        {view.configurationSelection === "unresolved"
-          ? "unresolved"
-          : view.configurationCount > 0
-            ? view.configurationSummary
-            : "unavailable"}
-      </p>
-      {view.unknownPassiveIds.length > 0 ? (
-        <p>Unknown passive ids: {view.unknownPassiveIds.join(", ")}</p>
-      ) : null}
-      {view.warnings.map((warning, index) => (
-        <p key={`${index}:${warning}`}>{warning}</p>
-      ))}
-      <p>
-        PoB2 character data imported. Current optimizer remains passive-tree
-        heuristic only.
-      </p>
+      <details>
+        <summary>Import details and compatibility</summary>
+        <p>Status: {view.status}</p>
+        <p>
+          Ascendancy passives:{" "}
+          {view.ascendancyPassiveIds.length > 0
+            ? view.ascendancyPassiveIds.join(", ")
+            : "none"}
+        </p>
+        <p>PoB tree key: {view.treeVersion ?? "unavailable"}</p>
+        <p>
+          Active GGG data version: {view.activeTreeVersion ?? "unavailable"}
+        </p>
+        <p>
+          Passive ids:{" "}
+          {view.unknownPassiveIds.length > 0
+            ? "unknown ids present"
+            : "all imported passive ids recognized"}
+        </p>
+        <p>Skill groups: {view.skillGroupCount}</p>
+        <p>
+          Main skill:{" "}
+          {view.mainSkillResolved
+            ? (view.mainSkillName ?? "resolved")
+            : "unresolved"}
+        </p>
+        <p>Supports: {view.supportCount}</p>
+        <p>Unresolved-role gems: {view.unresolvedRoleGemCount}</p>
+        <p>Equipment: {view.equipmentCount}</p>
+        <p>
+          Configuration:{" "}
+          {view.configurationSelection === "unresolved"
+            ? "unresolved"
+            : view.configurationCount > 0
+              ? view.configurationSummary
+              : "unavailable"}
+        </p>
+        {view.unknownPassiveIds.length > 0 ? (
+          <p>Unknown passive ids: {view.unknownPassiveIds.join(", ")}</p>
+        ) : null}
+        {view.warnings.map((warning, index) => (
+          <p key={`${index}:${warning}`}>{warning}</p>
+        ))}
+        <p>
+          PoB2 character data imported. Current optimizer remains passive-tree
+          heuristic only.
+        </p>
+      </details>
     </section>
   );
 }
@@ -311,7 +534,7 @@ function GearSummary({ gear }: { gear: GearAnalysis }) {
     (diagnostic) => diagnostic.code !== "missing-equipment-slot",
   );
   return (
-    <section>
+    <section id="gear">
       <h2>Gear</h2>
       <p>
         Gear-analysis readiness: {gear.readiness.status}. Parser coverage
@@ -399,7 +622,12 @@ function AnalysisReport({
   result,
   pob2Code,
 }: {
-  result: Extract<AnalysisResult, { ok: true }>;
+  result: Extract<AnalysisResult, { ok: true }> & {
+    explanation?:
+      | { status: "disabled" }
+      | { status: "ready"; document: ExplanationDocument }
+      | { status: "error"; message: string };
+  };
   pob2Code: string;
 }) {
   const { recommendation } = result;
@@ -449,7 +677,7 @@ function AnalysisReport({
   }
 
   return (
-    <section className="analysis-report" aria-live="polite">
+    <section className="analysis-report" id="passives" aria-live="polite">
       <h2>
         {result.characterName} · {result.className}
       </h2>
@@ -484,6 +712,7 @@ function AnalysisReport({
           <dd>{recommendation.definitive ? "yes" : "no"}</dd>
         </div>
       </dl>
+      <ExplanationPanel explanation={result.explanation} />
       <h3>Already allocated</h3>
       <AllocationList
         nodeIds={result.allocatedNodeIds}
@@ -520,14 +749,19 @@ function AnalysisReport({
         </p>
       )}
       {result.pob2 && pob2Code.trim().length > 0 && focused ? (
-        <CharacterDelta
-          key={`${pathKey(focused.nodeIds)}:${focused.pointCost}`}
-          pob2Code={pob2Code}
-          nodeIds={focused.nodeIds}
-          pointCost={focused.pointCost}
-          objective={recommendation.profileId}
-          pointBudget={recommendation.pointBudget}
-        />
+        <>
+          <CharacterDelta
+            key={`${pathKey(focused.nodeIds)}:${focused.pointCost}`}
+            pob2Code={pob2Code}
+            nodeIds={focused.nodeIds}
+            pointCost={focused.pointCost}
+            objective={recommendation.profileId}
+            pointBudget={recommendation.pointBudget}
+          />
+          <div id="upgrades">
+            <UpgradeComparison pob2Code={pob2Code} />
+          </div>
+        </>
       ) : null}
       <h3>Fully valued paths</h3>
       {recommendation.rankedCompleteCandidates.length === 0 ? (
@@ -579,6 +813,37 @@ function AnalysisReport({
           ))}
         </ol>
       )}
+    </section>
+  );
+}
+
+function ExplanationPanel({
+  explanation,
+}: {
+  explanation?:
+    | { status: "disabled" }
+    | { status: "ready"; document: ExplanationDocument }
+    | { status: "error"; message: string };
+}) {
+  if (explanation?.status === "error") {
+    return <Alert tone="caution">{explanation.message}</Alert>;
+  }
+  if (explanation?.status !== "ready") return null;
+  return (
+    <section className="explanation" aria-label="Explanation">
+      <h3>Explanation</h3>
+      <p>How this result was derived</p>
+      <p data-provider={explanation.document.provider.providerId}>
+        Deterministic explanation
+      </p>
+      {explanation.document.sections.map((section) => (
+        <div key={section.id}>
+          <h4>{section.heading}</h4>
+          {section.paragraphs.map((paragraph, index) => (
+            <p key={`${section.id}:${index}`}>{paragraph}</p>
+          ))}
+        </div>
+      ))}
     </section>
   );
 }

@@ -1,0 +1,16 @@
+{
+  "name": "@poe2-helper/crafting-data",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Versioned factual crafting data. Not a crafting probability model.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit --pretty false"
+  },
+  "dependencies": {
+    "zod": "^3.25.76"
+  }
+}

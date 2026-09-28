@@ -1,0 +1,16 @@
+{
+  "name": "@poe2-helper/upgrade-engine",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Metric-specific budget comparison for explicit item candidates. Not a universal item score.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit --pretty false"
+  },
+  "dependencies": {
+    "zod": "^3.25.76"
+  }
+}

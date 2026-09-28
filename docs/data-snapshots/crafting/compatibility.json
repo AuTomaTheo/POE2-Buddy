@@ -1,0 +1,594 @@
+{
+  "policyVersion": 1,
+  "snapshotChecksum": "sha256:dbfd7c4286e1e340a180ef91cdab621e5b5b612faccfc8688376da2bc6b610a8",
+  "schemaVersion": 1,
+  "sourceCommit": "b818b843337cae43b090b272fd98bbc0fd3a34f3",
+  "buddyPassiveTreePin": "0.5.5",
+  "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+  "checks": [
+    {
+      "id": "base-class:Rusted Cuirass",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Rusted Cuirass",
+      "expected": "Body Armour",
+      "actual": "Body Armour",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-tags:Rusted Cuirass",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Rusted Cuirass tags",
+      "expected": "armour|body_armour|default|ezomyte_basetype|str_armour",
+      "actual": "armour|body_armour|default|ezomyte_basetype|str_armour",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Withered Wand",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Withered Wand",
+      "expected": "Wand",
+      "actual": "Wand",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Iron Ring",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Iron Ring",
+      "expected": "Ring",
+      "actual": "Ring",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Linen Wraps",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Linen Wraps",
+      "expected": "Gloves",
+      "actual": "Gloves",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Wrapped Greathelm",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Wrapped Greathelm",
+      "expected": "Helmet",
+      "actual": "Helmet",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Twig Focus",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Twig Focus",
+      "expected": "Focus",
+      "actual": "Focus",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Rawhide Boots",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Rawhide Boots",
+      "expected": "Boots",
+      "actual": "Boots",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Crude Bow",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Crude Bow",
+      "expected": "Bow",
+      "actual": "Bow",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Crude Claw",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Crude Claw",
+      "expected": "Claw",
+      "actual": "Claw",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Makeshift Crossbow",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Makeshift Crossbow",
+      "expected": "Crossbow",
+      "actual": "Crossbow",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Splintered Flail",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Splintered Flail",
+      "expected": "Flail",
+      "actual": "Flail",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Dull Hatchet",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Dull Hatchet",
+      "expected": "One Hand Axe",
+      "actual": "One Hand Axe",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Wooden Club",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Wooden Club",
+      "expected": "One Hand Mace",
+      "actual": "One Hand Mace",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Shortsword",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Shortsword",
+      "expected": "One Hand Sword",
+      "actual": "One Hand Sword",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Broadhead Quiver",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Broadhead Quiver",
+      "expected": "Quiver",
+      "actual": "Quiver",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Rattling Sceptre",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Rattling Sceptre",
+      "expected": "Sceptre",
+      "actual": "Sceptre",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Splintered Tower Shield",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Splintered Tower Shield",
+      "expected": "Shield",
+      "actual": "Shield",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Hardwood Spear",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Hardwood Spear",
+      "expected": "Spear",
+      "actual": "Spear",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Ashen Staff",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Ashen Staff",
+      "expected": "Staff",
+      "actual": "Staff",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Changeling Talisman",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Changeling Talisman",
+      "expected": "Talisman",
+      "actual": "Talisman",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Clay Trap",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Clay Trap",
+      "expected": "TrapTool",
+      "actual": "TrapTool",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Splitting Greataxe",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Splitting Greataxe",
+      "expected": "Two Hand Axe",
+      "actual": "Two Hand Axe",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Felled Greatclub",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Felled Greatclub",
+      "expected": "Two Hand Mace",
+      "actual": "Two Hand Mace",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Crimson Amulet",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Crimson Amulet",
+      "expected": "Amulet",
+      "actual": "Amulet",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-class:Golden Obi",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "Golden Obi",
+      "expected": "Belt",
+      "actual": "Belt",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "base-tags:Withered Wand",
+      "capability": "baseTags",
+      "required": false,
+      "subject": "Withered Wand tags",
+      "expected": "default|no_cold_spell_mods|no_fire_spell_mods|no_lightning_spell_mods|no_physical_spell_mods|onehand|wand",
+      "actual": "chaos_implicit_skill|default|no_cold_spell_mods|no_fire_spell_mods|no_lightning_spell_mods|no_physical_spell_mods|onehand|wand",
+      "result": "unresolved",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared."
+    },
+    {
+      "id": "mod-id:Strength1",
+      "capability": "modifierIdentity",
+      "required": true,
+      "subject": "Strength1",
+      "expected": "present",
+      "actual": "present",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "mod-generation:Strength1",
+      "capability": "generationType",
+      "required": true,
+      "subject": "Strength1",
+      "expected": "suffix",
+      "actual": "suffix",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "mod-level:Strength1",
+      "capability": "requiredItemLevel",
+      "required": true,
+      "subject": "Strength1",
+      "expected": "1",
+      "actual": "1",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "mod-stats:Strength1",
+      "capability": "statRanges",
+      "required": true,
+      "subject": "Strength1",
+      "expected": "additional_strength:5-8",
+      "actual": "additional_strength:5-8",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "mod-spawn:Strength1",
+      "capability": "sourcePoolEligibility",
+      "required": true,
+      "subject": "Strength1",
+      "expected": "ring:1|amulet:1|belt:1|str_armour:1|str_dex_armour:1|str_int_armour:1|str_dex_int_armour:1|mace:1|axe:1|sword:1|spear:1|flail:1|crossbow:1|sceptre:1|talisman:1|default:0",
+      "actual": "ring:1|amulet:1|belt:1|str_armour:1|str_dex_armour:1|str_int_armour:1|str_dex_int_armour:1|mace:1|axe:1|sword:1|spear:1|flail:1|crossbow:1|sceptre:1|talisman:1|default:0",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "mod-id:Strength2",
+      "capability": "modifierIdentity",
+      "required": true,
+      "subject": "Strength2",
+      "expected": "present",
+      "actual": "present",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "mod-generation:Strength2",
+      "capability": "generationType",
+      "required": true,
+      "subject": "Strength2",
+      "expected": "suffix",
+      "actual": "suffix",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "mod-level:Strength2",
+      "capability": "requiredItemLevel",
+      "required": true,
+      "subject": "Strength2",
+      "expected": "11",
+      "actual": "11",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "mod-stats:Strength2",
+      "capability": "statRanges",
+      "required": true,
+      "subject": "Strength2",
+      "expected": "additional_strength:9-12",
+      "actual": "additional_strength:9-12",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "mod-spawn:Strength2",
+      "capability": "sourcePoolEligibility",
+      "required": true,
+      "subject": "Strength2",
+      "expected": "ring:1|amulet:1|belt:1|str_armour:1|str_dex_armour:1|str_int_armour:1|str_dex_int_armour:1|mace:1|axe:1|sword:1|spear:1|flail:1|crossbow:1|sceptre:1|talisman:1|default:0",
+      "actual": "ring:1|amulet:1|belt:1|str_armour:1|str_dex_armour:1|str_int_armour:1|str_dex_int_armour:1|mace:1|axe:1|sword:1|spear:1|flail:1|crossbow:1|sceptre:1|talisman:1|default:0",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "mod-id:IncreasedLife12",
+      "capability": "modifierIdentity",
+      "required": true,
+      "subject": "IncreasedLife12",
+      "expected": "present",
+      "actual": "present",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "mod-generation:IncreasedLife12",
+      "capability": "generationType",
+      "required": true,
+      "subject": "IncreasedLife12",
+      "expected": "prefix",
+      "actual": "prefix",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "mod-level:IncreasedLife12",
+      "capability": "requiredItemLevel",
+      "required": true,
+      "subject": "IncreasedLife12",
+      "expected": "75",
+      "actual": "75",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "mod-stats:IncreasedLife12",
+      "capability": "statRanges",
+      "required": true,
+      "subject": "IncreasedLife12",
+      "expected": "base_maximum_life:190-199",
+      "actual": "base_maximum_life:190-199",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "mod-spawn:IncreasedLife12",
+      "capability": "sourcePoolEligibility",
+      "required": true,
+      "subject": "IncreasedLife12",
+      "expected": "body_armour:1|default:0",
+      "actual": "body_armour:1|default:0",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "mod-id:LocalBaseArmourAndEvasionRating1",
+      "capability": "modifierIdentity",
+      "required": true,
+      "subject": "LocalBaseArmourAndEvasionRating1",
+      "expected": "present",
+      "actual": "present",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "mod-generation:LocalBaseArmourAndEvasionRating1",
+      "capability": "generationType",
+      "required": true,
+      "subject": "LocalBaseArmourAndEvasionRating1",
+      "expected": "prefix",
+      "actual": "prefix",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "mod-level:LocalBaseArmourAndEvasionRating1",
+      "capability": "requiredItemLevel",
+      "required": true,
+      "subject": "LocalBaseArmourAndEvasionRating1",
+      "expected": "1",
+      "actual": "1",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "mod-stats:LocalBaseArmourAndEvasionRating1",
+      "capability": "statRanges",
+      "required": true,
+      "subject": "LocalBaseArmourAndEvasionRating1",
+      "expected": "local_base_physical_damage_reduction_rating:9-16|local_base_evasion_rating:6-10",
+      "actual": "local_base_physical_damage_reduction_rating:9-16|local_base_evasion_rating:6-10",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "mod-spawn:LocalBaseArmourAndEvasionRating1",
+      "capability": "sourcePoolEligibility",
+      "required": true,
+      "subject": "LocalBaseArmourAndEvasionRating1",
+      "expected": "str_dex_armour:1|str_dex_int_armour:1|default:0",
+      "actual": "str_dex_armour:1|str_dex_int_armour:1|default:0",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared.",
+      "result": "match"
+    },
+    {
+      "id": "group-relation:Strength",
+      "capability": "modGroupIds",
+      "required": false,
+      "subject": "Strength1 and Strength2",
+      "expected": "shared source group Strength",
+      "actual": "shared source group Strength",
+      "result": "match",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared."
+    },
+    {
+      "id": "group-exclusivity:BaseLocalDefences",
+      "capability": "modGroupExclusivity",
+      "required": false,
+      "subject": "LocalBaseArmourAndEvasionRating1, LocalIncreasedEnergyShield1, LocalBaseArmourAndEnergyShield1",
+      "expected": "PoB 0.23.1 keeps these in separate groups: LocalBaseArmourAndEvasionRating, LocalEnergyShield, LocalBaseArmourAndEnergyShield",
+      "actual": "BaseLocalDefences | BaseLocalDefences | BaseLocalDefences",
+      "result": "mismatch",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared."
+    },
+    {
+      "id": "generation-weights:item-mods",
+      "capability": "generationWeights",
+      "required": false,
+      "subject": "item modifier generation weights",
+      "expected": "A proof that the game has no generation-weight rules, or a rule list from the export",
+      "actual": "0 generation-weight rules in the snapshot. PoB 0.23.1 Data lua has no weightMultiplierKey.",
+      "result": "unresolved",
+      "evidenceSource": "Path of Building Community (PoE2) 0.23.1 local Data files. Version labels 4.5.5.2, 0.5.5, and 0_5 are not compared."
+    },
+    {
+      "id": "domain-undefined:supported-classes",
+      "capability": "baseIdentity",
+      "required": true,
+      "subject": "domain string undefined on supported classes",
+      "expected": "0",
+      "actual": "0",
+      "evidenceSource": "repoe-fork/poe2 snapshot domain field",
+      "result": "match"
+    },
+    {
+      "id": "translation-fallback:policy",
+      "capability": "translationFallback",
+      "required": true,
+      "subject": "unresolved translation presentation",
+      "expected": "stable modifier id and stat ranges, with no invented English",
+      "actual": "stable modifier id and stat ranges, with no invented English",
+      "result": "match",
+      "evidenceSource": "packages/crafting-data planner presentation policy"
+    }
+  ],
+  "capabilities": {
+    "baseIdentity": "compatible",
+    "modifierIdentity": "compatible",
+    "statRanges": "compatible",
+    "requiredItemLevel": "compatible",
+    "generationType": "compatible",
+    "sourcePoolEligibility": "compatible",
+    "translationFallback": "compatible",
+    "baseTags": "unknown",
+    "modGroupIds": "unknown",
+    "modGroupExclusivity": "incompatible",
+    "generationWeights": "unknown"
+  },
+  "conclusion": "compatible",
+  "unresolved": [
+    "base-tags:Withered Wand",
+    "group-exclusivity:BaseLocalDefences",
+    "generation-weights:item-mods"
+  ],
+  "supportedItemClasses": [
+    "Amulet",
+    "Belt",
+    "Body Armour",
+    "Boots",
+    "Bow",
+    "Claw",
+    "Crossbow",
+    "Flail",
+    "Focus",
+    "Gloves",
+    "Helmet",
+    "One Hand Axe",
+    "One Hand Mace",
+    "One Hand Sword",
+    "Quiver",
+    "Ring",
+    "Sceptre",
+    "Shield",
+    "Spear",
+    "Staff",
+    "Talisman",
+    "TrapTool",
+    "Two Hand Axe",
+    "Two Hand Mace",
+    "Wand"
+  ],
+  "unsupportedItemClasses": [
+    {
+      "itemClass": "Buckler",
+      "reason": "Leather Buckler is class Buckler in the snapshot and type Shield in PoB 0.23.1. No class mapping is applied."
+    },
+    {
+      "itemClass": "FishingRod",
+      "reason": "The snapshot class is FishingRod and the PoB 0.23.1 type is Fishing Rod. The strings differ, so the class is unsupported."
+    },
+    {
+      "itemClass": "Warstaff",
+      "reason": "Wrapped Quarterstaff is class Warstaff in the snapshot and type Staff with subType Warstaff in PoB 0.23.1. No class mapping is applied."
+    }
+  ],
+  "distributionReadiness": "blocked",
+  "localDevelopmentOnly": true,
+  "modGroupExclusivity": "incompatible",
+  "generationWeights": "unknown"
+}

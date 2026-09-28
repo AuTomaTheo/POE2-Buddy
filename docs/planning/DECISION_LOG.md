@@ -1031,6 +1031,186 @@ Use this file for concise project-wide decisions. Large decisions may get a dedi
 
 ---
 
+## D-083 — Budget ranking is metric-specific efficiency for explicit supplied items
+
+**Status:** Accepted  
+**Date:** 2026-09-27
+
+**Decision:** The first upgrade comparison accepts only items the user supplies. It does not generate, search, or price rare items. A user-entered amount and currency is valid price provenance and is labeled as a user-entered price. A fixture price is valid in tests. poe.ninja may supply one currency-conversion snapshot for that comparison, and only for converting a price into chaos. It is never used to invent a rare item's market price. Ranking uses one user-selected metric from the allowlist Total DPS, Combined DPS, Average Hit, Life, Energy Shield, Total EHP, Armour, and Evasion. Efficiency is that metric's measured percent change divided by the positive normalized price. The budget is the most the user would pay for one item, not a combined shopping list. `UPGRADE_ENGINE_VERSION` is 1.
+
+**Reason:** A measured delta and a price are not a universal item score. Combining them is only meaningful for a metric the user chose and a cost whose source is explicit.
+
+**Consequences:** The analysis screen can compare at least two pasted items after a PoB2 import. Other measured changes stay visible beside the selected metric. Candidates outside the budget, without a price, or without a usable percent change stay visible and are not given a fake rank. The passive heuristic, gear normalization, and character context are unchanged. Trade search, crafting, and multi-item combination optimization are not part of this step.
+
+**Supersedes / superseded by:** None. This does not change D-077 through D-082.
+
+---
+
+## D-084 — Trade-offs stay visible, and a winner exists only for a positive within-budget result
+
+**Status:** Accepted  
+**Date:** 2026-09-27
+
+**Decision:** A measured metric stays visible when its raw absolute change is non-zero, whether or not it is allowed to rank candidates. Ranking still uses only the selected allowlist metric and the existing price policy. Resistances, chances, and resources can be shown as decreased or improved without becoming ranking inputs. A winner id exists only when at least one rankable candidate is within budget and has a positive selected-metric change. A comparison with no such candidate has no winner, including when a positive candidate is over budget or an affordable candidate has a zero change. If no candidate can be ranked, the summary says so and does not pick the first row. `UPGRADE_ENGINE_VERSION` is 2.
+
+**Reason:** STEP-018C hid non-rankable changes and could describe the first ordered row as the best gain when that row was not a positive affordable improvement.
+
+**Consequences:** The comparison table keeps the selected metric in its own columns and lists other non-zero measured changes beside it. Headline text comes from the summary state. Candidate group ordering is unchanged. Price conversion, the PoB2 worker, and the rankable allowlist are unchanged.
+
+**Supersedes / superseded by:** None. D-083 still describes the ranking rule. This decision adds visibility and summary rules and moves the engine version from 1 to 2.
+
+---
+
+## D-085 — Crafting data is a pinned factual snapshot, not a probability model
+
+**Status:** Accepted  
+**Date:** 2026-09-27
+
+**Decision:** The crafting source is the community export `repoe-fork/poe2` at commit `b818b843337cae43b090b272fd98bbc0fd3a34f3`, labeled version 4.5.5.2. There is no silent fallback to another provider. Path of Building's `GetModSpawnWeight` is evidence for first-match spawn-weight order only, and it is not merged as a second dataset. `CRAFTING_DATA_SCHEMA_VERSION` is 1, separate from that export label and from passive-tree pins 0.5.5 and `0_5`. The checksum covers normalized records and excludes fetch timestamps. The full export stays in gitignored `var/crafting-data/` because generated RePoE data is owned by Grinding Gear Games and this repository does not have a cleared right to publish it. Queries use the local snapshot. A spawn weight is not a probability. Eligibility is `eligible`, `ineligible`, or `unresolved`. Weight 0 is kept. A missing weight is not stored as 0. Compatibility `unknown` blocks planner use.
+
+**Reason:** STEP-019 needs factual base, modifier, stat, translation, and spawn-weight records before any craft planner. The export's license does not support committing the full dataset, and the field names do not define crafting odds.
+
+**Consequences:** `npm run refresh:crafting-data` is the only network path. Runtime lookups do not fetch. Source-pool results may say a modifier is eligible for a base and item level, and they do not say it is craftable or how many attempts it takes. STEP-020 stays closed while compatibility is unknown and translations are partial.
+
+**Supersedes / superseded by:** Superseded in part by D-086 for the planner-approval gate. The source pin and the no-probability rule still stand.
+
+---
+
+## D-086 — Scoped crafting planner approval is separate from a loaded snapshot
+
+**Status:** Accepted  
+**Date:** 2026-09-27
+
+**Decision:** `CRAFTING_COMPATIBILITY_POLICY_VERSION` is 1. A crafting snapshot is not planner-ready just because it parses. Planner approval is a checksum-bound report. For this snapshot the required scoped capabilities are compatible: base identity, modifier identity, stat ranges, required item level, generation type, source-pool eligibility, and the translation fallback. That conclusion comes from record comparisons with Path of Building Community (PoE2) 0.23.1, not from similarity among the labels 4.5.5.2, 0.5.5, and `0_5`. Mod-group exclusivity is not approved, because PoB separates defence families that the snapshot places together in `BaseLocalDefences`. Generation weights stay unknown. Unresolved translations fall back to the modifier id and stat ranges, with no invented English. Unit tests use synthetic records. The full export stays local, prepared only by `npm run refresh:crafting-data`. Distribution stays blocked. Supported planner classes are the 25 item classes whose representative PoB type string matches the snapshot class. Buckler, FishingRod, and Warstaff are unsupported because those strings differ.
+
+**Reason:** STEP-019 left compatibility unknown, a real-record fixture in git, and partial translations, which was not a precise contract for STEP-020.
+
+**Consequences:** STEP-020 may start as local scoped development. It must not treat same-group ids as proven exclusivity, must not calculate probability, and must not bundle the full snapshot. A new snapshot does not keep this approval unless its checksum matches the report.
+
+**Supersedes / superseded by:** Supersedes the planner-gate portion of D-085.
+
+---
+
+## D-087 — Craft targets are explicit and individual
+
+**Status:** Accepted  
+**Date:** 2026-09-27
+
+**Decision:** `CRAFTING_PLANNER_VERSION` is 1. The craft target planner answers only the targets a person types: a supported base, an item level, and one or more stat ids or modifier ids. It does not read CharacterContext, a PoB2 build, or a heuristic to invent a target. It does not take a budget. Duplicate stat ids collapse to one target and keep the higher minimum. Each modifier is returned once, with every target it satisfies. Candidates are ordered by eligibility, then affix kind, then required item level, then modifier id. That order is not a quality ranking. Generation weights are not applied. Spawn weight stays source metadata. Same-group modifiers are not treated as exclusive or compatible. A plan with more than one target says coexistence is not validated. Unsupported classes, including Warstaff, are refused with no nearby-class mapping. The supported class list is the STEP-019A list.
+
+**Reason:** A budget, a probability, or a coexistence claim would invent a crafting model this project does not have yet. An automatic target would also hide the fact that the person chose the goal.
+
+**Consequences:** STEP-020 can list source-pool matches for an explicit target on the local snapshot. It cannot say how to craft the modifier, whether two modifiers can roll together, what it costs, or which target a build should want. STEP-021 is not ready. A later mechanic step has to define one crafting action before any of those claims are allowed.
+
+**Supersedes / superseded by:** None.
+
+---
+
+## D-088 — The first crafting mechanic is Orb of Augmentation, and its roll is not modeled
+
+**Status:** Accepted  
+**Date:** 2026-09-27
+
+**Decision:** `CRAFTING_MECHANIC_SEMANTICS_VERSION` is 1. The first mechanic id is `add-random-explicit`, bound only to `Metadata/Items/Currency/CurrencyAddModToMagic` in `repoe-fork/poe2` commit `b818b843337cae43b090b272fd98bbc0fd3a34f3`, source label 4.5.5.2. The item text says it augments a magic item with a new random modifier, and that magic items can have up to two random modifiers. The same file's Chaos Orb text describes a removal; the Augmentation text does not. The item stays magic. Greater and Perfect Orb of Augmentation use the same sentences and different drop levels, so they are not this mechanic. The modifier pool, spawn-weight selection, generation-weight formula, mod-group conflict, empty-pool behavior, and full-item currency consumption are not proven. Probability and expected cost stay blocked. Path of Building Community (PoE2) 0.23.1 does not implement this action. Its spawn-weight walk is not treated as this currency's sampler.
+
+**Reason:** STEP-020 can list source-pool matches. It cannot say what one currency does. Augmentation is the smallest add-one action whose item text states both the rarity and a numeric cap. A simulator would still have to guess the pool.
+
+**Consequences:** STEP-020.5 can validate a magic item with no explicit modifier ids and can list source-pool ids for inspection. It must not choose a modifier or return a probability. An item that already has an explicit modifier id is rejected until a conflict rule exists. STEP-021 is blocked for this mechanic.
+
+**Supersedes / superseded by:** None.
+
+---
+
+## D-089 — Augmentation still has no proven pool or selection rule
+
+**Status:** Accepted  
+**Date:** 2026-09-27
+
+**Decision:** `CRAFTING_MECHANIC_SEMANTICS_VERSION` stays 1. STEP-020.6 checked `Metadata/Items/Currency/CurrencyAddModToMagic` and `data/mods.json` in `repoe-fork/poe2` commit `b818b843337cae43b090b272fd98bbc0fd3a34f3`, and Path of Building Community (PoE2) 0.23.1 `Classes`. The currency record states a magic item, one added random modifier, and a total cap of two random modifiers. It has no spawn, weight, prefix, suffix, group, or essence field. No modifier record names that currency. The export has zero generation-weight rules, which is not a multiplier of 1. PoB does not name this currency record. Its magic `affixLimit` of 2 is an editor layout, not an Augmentation sampler. Same-id exclusion, mod-group exclusion, and a prefix/suffix slot split stay unproven. `BaseLocalDefences` stays a group mismatch and is not used. Final mechanic candidate ids stay empty. Probability stays blocked.
+
+**Reason:** A source-pool inspection list is still not an Augmentation outcome. Filling it in from PoE1 habits or from the PoB editor would invent the roll.
+
+**Consequences:** STEP-020.6 can reject an occupied magic item and can list inspection ids for a magic item with no explicit modifiers. It must not choose a modifier or return a probability. Greater and Perfect Orb of Augmentation stay out of this mechanic. STEP-021 is blocked.
+
+**Supersedes / superseded by:** None.
+
+---
+
+## D-090 — No current crafting mechanic is safe to simulate
+
+**Status:** Accepted  
+**Date:** 2026-09-27
+
+**Decision:** STEP-021 stays blocked. The first simulation mechanic is not selected. `add-random-explicit` stays ready only as a magic, zero-explicit transition. PoE2DB's weightings page and Craft of Exile's PoE2 weightings page, both read on 2026-09-27, state that modifier weights are not in the game files. `pyoe2-craftpath` (MIT, README on `main`) targets PoE2 0.4.0, takes weights from Craft of Exile, and uses Greater and Perfect Augmentation item levels 55 and 70 in commit `8acb17c0bac048d0a16f780f71313aef4bb4a2af`. This export's item text states no such tier rule. Those sources are not adopted. Transmutation, Regal, Exalted, Chaos, Essence of the Body, Annulment, Alchemy, and Scouring were compared from the pinned item text. None has a proven pool and a proven selection rule together. Scouring says it removes all modifiers and does not state the resulting rarity. Essence of the Body matches four monster-domain records and no item modifier id. Imported gear still cannot build `CraftingItemState`.
+
+**Reason:** STEP-020.6 had already exhausted the pinned export and Path of Building for Augmentation. The new sources describe extrapolated weights and a different game version. Using them as the selection rule would invent the roll.
+
+**Consequences:** The simulation registry answers `NO CRAFTING MECHANIC IS CURRENTLY SAFE TO SIMULATE`. No probability is stored. STEP-021 must not start until a later source proves one mechanic's transition, pool, required conflicts, and selection rule for a named scope. Another pass over the same Augmentation question is not the next step.
+
+**Supersedes / superseded by:** None.
+
+---
+
+## D-091 — The Craft of Exile differential does not approve a community Augmentation model
+
+**Status:** Accepted  
+**Date:** 2026-09-27
+
+**Decision:** A community-derived crafting model is allowed only when it is pinned, reproducible, cross-checked, and labeled as an estimate. It is not official game truth. On 2026-09-27 the public Craft of Exile PoE2 page reported patch `4.5.5.3` (label `0.5.5.3`, Forbidden Rites). Its public `json/poe2/4.5.5.3/data.json` uses the same base metadata ids and the same modifier ids as this snapshot for the checked examples. Every current inspection id for Rusted Cuirass (144), Iron Ring (203), and Withered Wand (118) is in that dictionary. Craft of Exile `power` is not one scale of the RePoE spawn weight: 134 distinct ratios on Rusted Cuirass and 121 on Iron Ring. The developers page says there is no API. No source license was found, so no Craft of Exile code or dataset was copied. Calculator probabilities were not reproduced. Greater and Perfect Augmentation are stored there with minimum modifier levels 44 and 70, which the item text does not state. The direct-evidence model stays blocked. The community model stays blocked. `CRAFTING_MECHANIC_SEMANTICS_VERSION` stays 1.
+
+**Reason:** Dictionary overlap does not name the Augmentation pool, and a weight field that is not a scale of the spawn weight is not a selection formula. Approving either would present a community estimate as a finished model.
+
+**Consequences:** STEP-021 stays blocked. Buddy does not call Craft of Exile at runtime. Another Augmentation evidence step is not the next step. Crafting simulation stays deferred until a source provides a pool and a selection rule that can be reproduced for a named scope.
+
+**Supersedes / superseded by:** None.
+
+---
+
+## D-092 — The Craft of Exile client draw still does not approve Augmentation
+
+**Status:** Accepted  
+**Date:** 2026-09-27
+
+**Decision:** The public Craft of Exile calculator client for patch `4.5.5.3` was reconstructed on 2026-09-27. Normal Orb of Augmentation is limited to a magic item with an open affix. A magic item has one prefix slot and one suffix slot. The client draws once from the combined open sides. The draw weight is the class weight, not modifier `power` and not the RePoE spawn weight. On Rusted Cuirass, Iron Ring, and Withered Wand, the reconstructed candidate ids match this snapshot's eligible prefix and suffix inspection set at item levels 82 and 1. Adding one prefix leaves only suffixes. Adding one suffix leaves only prefixes. `ChaosResist1`, `IncreasedSpirit8`, and `Strength1` do not match a spawn-weight share within one displayed rounding unit. The class-weight table was not copied. The community model stays blocked. The direct-evidence model stays blocked. `CRAFTING_MECHANIC_SEMANTICS_VERSION` stays 1.
+
+**Reason:** A matching candidate list is not a probability. The local snapshot can name the same modifiers and cannot supply the class weights the client rolls.
+
+**Consequences:** STEP-021 stays blocked. This was the last planned Augmentation-only evidence step. Do not add STEP-020.8B. Crafting simulation stays deferred.
+
+**Supersedes / superseded by:** None.
+
+---
+
+## D-093 — Current class weights can drive a limited community Augmentation probability
+
+**Status:** Accepted  
+**Date:** 2026-09-27
+
+**Decision:** Community crafting probabilities use Craft of Exile class weights for patch `4.5.5.3` when the modifier id matches this snapshot exactly. The public Prohibited Library recombinator sheet `1l811uI5eXML-Iw_vNNouah9XRWZVGiLjzZOBWObxKpI` is historical lineage, not current authority. Its full table stays gitignored because no redistribution license was found. PoE2DB did not expose a numeric weight for these modifiers, so that cross-check is unavailable. A missing weight blocks the whole open pool. Unknown weight is not stored as zero. `COMMUNITY_WEIGHT_SCHEMA_VERSION` is 1. Direct-evidence probabilities stay blocked. The promoted scope is a magic item with zero or one explicit modifier on the STR body armour, ring, and wand class pools. Those three pools have a current weight for every eligible modifier.
+
+**Reason:** STEP-020.8A already matched the candidate ids and the one-draw rule. The class weights now supply the missing denominator. On Rusted Cuirass the total is 124500, and `ChaosResist1`, `IncreasedSpirit8`, and `Strength1` reproduce the earlier chances. T1 and T2 life are both weight 1000. Spirit tiers run from 100 through 500.
+
+**Consequences:** STEP-021 may start only for that magic scope, using the community-derived weights. It was not started here. Other classes, rare items, and any pool with a missing weight stay closed. A later Craft of Exile patch needs a new diff and a new promotion.
+
+**Supersedes / superseded by:** None.
+
+---
+
+## D-094 — Explanations repeat structured facts and do not change engine results
+
+**Status:** Accepted  
+**Date:** 2026-09-28
+
+**Decision:** The explainer cannot change rankings, scores, prices, craft probabilities, or mechanic rules. Its input is a bounded list of structured facts, not a raw build, item, or account payload. STEP-022's only provider is the local deterministic template. Analysis still succeeds when explanation is disabled or when rendering fails. A remote language model is a separate STEP-023 choice and is not connected. STEP-021 stays deferred in the post-MVP polish register.
+
+**Reason:** The MVP needs readable wording without an API key, and that wording must not become a second optimizer.
+
+**Consequences:** `EXPLANATION_SCHEMA_VERSION` and `EXPLAINER_INTERFACE_VERSION` are 1. Empty `EXPLAINER_MODE` means deterministic. `EXPLAINER_MODE=disabled` hides the section. STEP-023 can add a provider behind the same interface after an intentional provider choice. STEP-021 was not started.
+
+**Supersedes / superseded by:** None.
+
+---
+
 ## Template for new decision
 
 ### D-XXX — <Decision title>

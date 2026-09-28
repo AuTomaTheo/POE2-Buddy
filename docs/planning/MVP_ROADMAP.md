@@ -6,6 +6,8 @@ The MVP proves that we can ingest current PoE2 passive-tree/game data, represent
 
 The MVP should be useful **without GGG OAuth approval**. Live account import is an integration milestone, not a prerequisite for validating the optimizer.
 
+**Exit review (2026-09-28):** MVP COMPLETE. PRODUCTION-LAUNCH NOT READY. STEP-021 stays deferred until after the MVP. STEP-022 is complete. STEP-023 stays optional until a provider is selected. Record: `docs/progress/STEP-022A-mvp-final-integration-exit-validation.md`.
+
 ## MVP success criteria
 
 A user can:
@@ -571,6 +573,8 @@ Substeps:
 
 ### STEP-021 — Craft simulation
 
+**Status:** Deferred post-MVP. Community-derived weights exist for strength body armour, ring, and wand. This review does not start the simulator.
+
 Substeps:
 
 - implement one crafting mechanic at a time;
@@ -586,6 +590,8 @@ Substeps:
 
 ### STEP-022 — Provider-agnostic explainer interface
 
+**Status:** Complete. The local deterministic provider is the MVP explanation layer.
+
 Substeps:
 
 - define prompt input strictly from deterministic recommendation JSON;
@@ -596,6 +602,8 @@ Substeps:
 
 
 ### STEP-023 — Add a real LLM provider
+
+**Status:** Optional. No provider is selected.
 
 **BLOCKED until an API provider/key is intentionally selected and configured.**
 

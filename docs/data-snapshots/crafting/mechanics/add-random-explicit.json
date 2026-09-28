@@ -1,0 +1,148 @@
+{
+  "mechanicId": "add-random-explicit",
+  "semanticsVersion": 1,
+  "candidatePoolStatus": "partial",
+  "conflictRuleStatus": "blocked",
+  "slotRuleStatus": "unproven",
+  "spawnWeightStatus": "unproven",
+  "generationWeightStatus": "unknown",
+  "selectionRuleStatus": "unproven",
+  "probabilityStatus": "blocked",
+  "displayName": "Orb of Augmentation",
+  "currencyRecordId": "Metadata/Items/Currency/CurrencyAddModToMagic",
+  "currentGameScope": "magic item with fewer than two explicit modifier ids",
+  "evidenceChecks": [
+    {
+      "rule": "rarity requirement",
+      "source": "data/base_items.json Metadata/Items/Currency/CurrencyAddModToMagic description",
+      "observed": "Augments a magic item with a new random modifier",
+      "status": "supported"
+    },
+    {
+      "rule": "open-affix requirement",
+      "source": "same record directions",
+      "observed": "Magic items can have up to two random modifiers",
+      "status": "cap-stated"
+    },
+    {
+      "rule": "full-item currency consumption",
+      "source": "same record",
+      "observed": "The cap is stated. Consumption on a full item is not stated.",
+      "status": "unknown"
+    },
+    {
+      "rule": "candidate pool",
+      "source": "same record",
+      "observed": "The modifier is random. The sampling pool is not stated.",
+      "status": "partial"
+    },
+    {
+      "rule": "weight selection",
+      "source": "same record; PoB 0.23.1 Item.lua GetModSpawnWeight",
+      "observed": "No currency weight formula is in the item text. PoB's spawn-weight walk is not an Augmentation sampler.",
+      "status": "unknown"
+    },
+    {
+      "rule": "special mods",
+      "source": "same record",
+      "observed": "The text does not include implicit, unique, corrupted, or other generation types.",
+      "status": "excluded-by-default"
+    },
+    {
+      "rule": "essence-only",
+      "source": "same record and modifier is_essence_only",
+      "observed": "The currency text does not say whether the essence-only flag excludes a modifier.",
+      "status": "unresolved"
+    },
+    {
+      "rule": "conflicts",
+      "source": "STEP-019A mod-group finding",
+      "observed": "Same-group exclusivity is not approved. An existing explicit modifier blocks this mechanic.",
+      "status": "blocked"
+    },
+    {
+      "rule": "failure behavior",
+      "source": "same record",
+      "observed": "Empty-pool and full-item outcomes are not stated.",
+      "status": "unknown"
+    },
+    {
+      "rule": "candidate pool linkage",
+      "source": "data/base_items.json CurrencyAddModToMagic and data/mods.json in commit b818b843337cae43b090b272fd98bbc0fd3a34f3",
+      "observed": "The currency record text has no spawn, weight, prefix, suffix, group, or essence field. No modifier record names this currency.",
+      "status": "partial"
+    },
+    {
+      "rule": "magic affix structure",
+      "source": "same currency directions; PoB 0.23.1 Classes/Item.lua crafted magic branch",
+      "observed": "The directions state a total of two random modifiers. PoB sets affixLimit to 2 when prefix and suffix limits are absent, then walks each list for half of that limit. That editor layout is not an Augmentation sampler.",
+      "status": "unproven"
+    },
+    {
+      "rule": "same-id conflict",
+      "source": "same currency record",
+      "observed": "The record does not say whether a modifier id already on the item can be added again.",
+      "status": "blocked"
+    },
+    {
+      "rule": "mod-group conflict",
+      "source": "STEP-019A BaseLocalDefences mismatch",
+      "observed": "PoB separates defence families that this snapshot groups as BaseLocalDefences. Groups are not used as Augmentation exclusions.",
+      "status": "blocked"
+    },
+    {
+      "rule": "generation weights",
+      "source": "data/mods.json generation_weights in the same commit; PoB 0.23.1 Data has no weightMultiplierKey",
+      "observed": "The export contains zero generation-weight rules. An empty list is not a multiplier of 1.",
+      "status": "unknown"
+    }
+  ],
+  "supportedRules": [
+    "rarity must be magic",
+    "the action adds one random modifier",
+    "the item stays magic",
+    "the stated cap is two random modifiers",
+    "the text does not describe removing an existing modifier"
+  ],
+  "blockedRules": [
+    "mechanic candidate pool",
+    "prefix/suffix slot split",
+    "same-id exclusion",
+    "spawn-weight selection",
+    "generation-weight formula",
+    "mod-group conflict",
+    "probability",
+    "expected cost",
+    "Greater and Perfect Orb of Augmentation tier behavior"
+  ],
+  "provenance": {
+    "classification": "community-export-of-game-item-text",
+    "provider": "repoe-fork/poe2",
+    "commit": "b818b843337cae43b090b272fd98bbc0fd3a34f3",
+    "sourceVersion": "4.5.5.2",
+    "file": "data/base_items.json",
+    "recordId": "Metadata/Items/Currency/CurrencyAddModToMagic",
+    "description": "Augments a [ItemRarity|Magic] item with a new random modifier",
+    "directions": "Right click this item then left click a magic item to apply it. Magic items can have up to two random modifiers.",
+    "observedOn": "2026-09-27",
+    "relatedRecordsWithTheSameText": [
+      "Metadata/Items/Currency/CurrencyAddModToMagic2",
+      "Metadata/Items/Currency/CurrencyAddModToMagic3"
+    ]
+  },
+  "step021": "BLOCKED",
+  "binding": {
+    "snapshotChecksum": "sha256:dbfd7c4286e1e340a180ef91cdab621e5b5b612faccfc8688376da2bc6b610a8",
+    "compatibilityPolicyVersion": 1,
+    "semanticsVersion": 1
+  },
+  "blockers": [
+    "mechanic candidate pool",
+    "prefix/suffix slot split",
+    "same-id exclusion",
+    "mod-group conflict",
+    "spawn-weight selection",
+    "generation-weight formula",
+    "probability"
+  ]
+}

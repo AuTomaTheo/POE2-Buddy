@@ -1,0 +1,16 @@
+{
+  "name": "@poe2-helper/ai-explainer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Provider-agnostic explanations of already calculated facts. Not a ranking or crafting engine.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit --pretty false"
+  },
+  "dependencies": {
+    "zod": "^3.25.76"
+  }
+}
