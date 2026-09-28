@@ -251,6 +251,27 @@ button:disabled,
   border-top: 1px solid var(--line);
 }
 
+.explanation-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.test-mode-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+.test-mode-heading h2,
+.test-mode-heading p {
+  margin: 0;
+}
+
+.explanation-heading h3,
+.explanation-heading p {
+  margin: 0;
+}
+
 .analysis-meta {
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
 }
@@ -302,6 +323,80 @@ details {
   margin-bottom: 0.8rem;
 }
 
+.passive-recommendations {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.recommendations-heading,
+.recommendation-card-heading,
+.recommendation-actions {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.recommendations-heading h3,
+.recommendation-card h4,
+.recommendation-card p {
+  margin: 0;
+}
+
+.recommendation-list {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.recommendation-card {
+  gap: var(--space-3);
+  margin: 0;
+  padding: var(--space-4);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
+.recommendation-rank {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.recommendation-facts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.recommendation-facts div {
+  min-width: 7.5rem;
+}
+
+.recommendation-actions {
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.incomplete-paths {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.incomplete-search {
+  display: grid;
+  gap: var(--space-1);
+  max-width: 28rem;
+  font-weight: 700;
+}
+
 .compare-toggle {
   display: inline-flex;
   width: fit-content;
@@ -313,11 +408,168 @@ details {
   width: auto;
 }
 
+@media (max-width: 767px) {
+  .recommendations-heading,
+  .recommendation-card-heading {
+    flex-direction: column;
+  }
+
+  .recommendation-facts {
+    justify-content: flex-start;
+  }
+}
+
 .path-map {
   width: 100%;
   height: auto;
   background: #fffdf8;
   border: 1px solid #d9d1c4;
+}
+
+.measured-impact,
+.measured-metrics {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.measured-impact-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.measured-impact-heading h3,
+.measured-impact-heading p,
+.measured-metrics h4,
+.measured-metrics p {
+  margin: 0;
+}
+
+.measured-metrics {
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+}
+
+.measured-metrics article {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
+.build-context,
+.context-facts {
+  display: grid;
+  gap: var(--space-3);
+}
+.context-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+.context-heading h2,
+.context-heading p {
+  margin: 0;
+}
+.context-facts {
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+}
+.context-facts div {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+.context-facts span {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.gear-overview,
+.gear-grid {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.gear-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.gear-heading h2,
+.gear-heading p,
+.gear-card h3,
+.gear-card p {
+  margin: 0;
+}
+
+.gear-grid {
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.gear-card {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
+.upgrade-workflow,
+.upgrade-candidates,
+.upgrade-settings {
+  display: grid;
+  gap: var(--space-3);
+}
+.upgrade-workflow > h3,
+.upgrade-workflow > p {
+  margin: 0;
+}
+.upgrade-candidates {
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+}
+.upgrade-candidate {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+}
+.upgrade-settings {
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+
+.passive-tree-canvas {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.passive-tree-canvas-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.passive-tree-canvas-heading h4,
+.passive-tree-canvas-heading p {
+  margin: 0;
+}
+
+.map-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+@media (max-width: 767px) {
+  .passive-tree-canvas-heading {
+    flex-direction: column;
+  }
 }
 
 .path-edge-proposed {
@@ -523,4 +775,100 @@ details {
 .import-result:focus {
   outline: 2px solid currentColor;
   outline-offset: 4px;
+}
+
+.build-overview {
+  margin-top: var(--space-6);
+}
+.build-overview-heading,
+.overview-actions {
+  align-items: flex-start;
+  display: flex;
+  gap: var(--space-3);
+  justify-content: space-between;
+}
+.build-overview-heading h2 {
+  margin: 0;
+}
+.eyebrow {
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin: 0 0 var(--space-1);
+  text-transform: uppercase;
+}
+.overview-facts {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: var(--space-5) 0;
+}
+.overview-facts div,
+.overview-grid section {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+}
+.overview-facts dt {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+.overview-facts dd {
+  font-weight: 700;
+  margin: var(--space-1) 0 0;
+}
+.overview-grid {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.overview-grid h3 {
+  margin-top: 0;
+}
+.overview-actions {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: var(--space-5);
+}
+@media (max-width: 767px) {
+  .build-overview-heading {
+    flex-direction: column;
+  }
+  .overview-facts,
+  .overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .start-actions {
+    grid-auto-flow: row;
+  }
+
+  .context-heading,
+  .gear-heading,
+  .test-mode-heading,
+  .explanation-heading,
+  .measured-impact-heading,
+  .upgrade-results-heading {
+    flex-direction: column;
+  }
+
+  .upgrade-candidates,
+  .gear-grid,
+  .measured-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .map-controls button,
+  .overview-actions a,
+  .start-actions .button {
+    min-height: 2.75rem;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 }

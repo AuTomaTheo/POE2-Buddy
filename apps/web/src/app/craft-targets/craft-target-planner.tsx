@@ -7,6 +7,7 @@ import {
   submitCraftTargets,
 } from "../craft-actions";
 import { Alert } from "../shared/alert";
+import { LoadingNote } from "../shared/loading-note";
 import type {
   PlannerResponse,
   TargetSearchHit,
@@ -35,6 +36,7 @@ export function CraftTargetPlanner({
   const [targets, setTargets] = useState<TargetDraft[]>([]);
   const [notice, setNotice] = useState("");
   const [result, setResult] = useState<PlannerResponse | null>(null);
+  const [planning, setPlanning] = useState(false);
   const classRequest = useRef(0);
 
   async function chooseClass(nextClass: string) {
@@ -61,17 +63,25 @@ export function CraftTargetPlanner({
   }
 
   async function plan() {
+    setPlanning(true);
+    setResult(null);
     const level = Number(itemLevel);
-    const planned = await submitCraftTargets({
-      baseId,
-      itemLevel: level,
-      targets,
-    });
-    setResult(planned);
+    try {
+      const planned = await submitCraftTargets({
+        baseId,
+        itemLevel: level,
+        targets,
+      });
+      setResult(planned);
+    } finally {
+      setPlanning(false);
+    }
   }
 
   return (
     <main className="analysis">
+      <p className="eyebrow">Craft targets</p>
+      <h1>Plan an item target</h1>
       <p>
         Choose a base, an item level, and the stat or modifier you want. This
         lists source-pool matches. It does not choose a crafting method.
@@ -138,8 +148,9 @@ export function CraftTargetPlanner({
           />
         </label>
         <label>
-          Stat id
+          Desired stat or modifier
           <input
+            placeholder="For example: Maximum Life"
             value={statId}
             onChange={(event) => setStatId(event.target.value)}
           />
@@ -172,7 +183,7 @@ export function CraftTargetPlanner({
           Add stat target
         </button>
         <label>
-          Modifier id
+          Advanced modifier id
           <input
             value={modifierId}
             onChange={(event) => setModifierId(event.target.value)}
@@ -192,7 +203,7 @@ export function CraftTargetPlanner({
           Add modifier target
         </button>
         <label>
-          Find a stat id or modifier id
+          Search available stats and modifiers
           <input
             value={query}
             onChange={(event) => setQuery(event.target.value)}
@@ -228,13 +239,13 @@ export function CraftTargetPlanner({
                     }
                   }}
                 >
-                  Add {hit.kind} {hit.id}
+                  Add {hit.id}
                 </button>
               </li>
             ))}
           </ul>
         ) : null}
-        <h2>Targets</h2>
+        <h2>Chosen targets</h2>
         {targets.length === 0 ? (
           <p>No targets yet.</p>
         ) : (
@@ -256,10 +267,16 @@ export function CraftTargetPlanner({
             ))}
           </ul>
         )}
-        <button type="submit" disabled={targets.length === 0 || baseId === ""}>
-          Plan targets
+        <button
+          type="submit"
+          disabled={planning || targets.length === 0 || baseId === ""}
+        >
+          {planning ? "Checking eligible modifiers…" : "Plan targets"}
         </button>
       </form>
+      {planning ? (
+        <LoadingNote>Checking the modifier source pool…</LoadingNote>
+      ) : null}
       {notice ? <Alert tone="blocking">{notice}</Alert> : null}
       {result ? <PlannerResult result={result} /> : null}
     </main>
@@ -279,7 +296,7 @@ function PlannerResult({ result }: { result: PlannerResponse }) {
   if (!result.ok) {
     return (
       <section className="alert alert-blocking" aria-live="polite">
-        <h2>{result.code}</h2>
+        <h2>Craft target unavailable</h2>
         <p>{result.message}</p>
         {result.itemClass ? <p>Item class: {result.itemClass}</p> : null}
         {result.baseName ? <p>Base: {result.baseName}</p> : null}
@@ -292,7 +309,10 @@ function PlannerResult({ result }: { result: PlannerResponse }) {
       <h2>
         {result.base.name} · item level {result.itemLevel}
       </h2>
-      <p>Plan status: {result.status}</p>
+      <p>
+        Source-pool status: {result.status}. This describes eligible modifiers;
+        it does not choose a crafting method.
+      </p>
       {result.warnings.map((warning) => (
         <Alert tone="caution" key={warning}>
           {warning}

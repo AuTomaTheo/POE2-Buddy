@@ -9,8 +9,11 @@ import {
 } from "react";
 import { analyzePassiveBuild } from "./actions";
 import { Alert } from "./shared/alert";
+import { Badge } from "./shared/badge";
 import { LoadingNote } from "./shared/loading-note";
 import { exportInputProblem } from "./build/import-validation";
+import { BuildOverview } from "./build/build-overview";
+import { PassiveTreeCanvas } from "./passives/passive-tree-canvas";
 import { START_DEMOS } from "./start/demos";
 import { buildIdentity } from "./shell/build-identity";
 import { useBuildSession } from "./shell/build-session";
@@ -30,7 +33,6 @@ import {
   nodeLabel,
   pathKey,
   type LayoutNode,
-  type PathMap,
 } from "../lib/path-layout";
 
 const CLAIM_TEXT: Record<RecommendationClaim, string> = {
@@ -71,7 +73,7 @@ export function AnalysisScreen({
 }) {
   const [pob2Draft, setPob2Draft] = useState(initialPob2Code);
   const [inputProblem, setInputProblem] = useState<string | null>(null);
-  const resultRef = useRef<HTMLDivElement>(null);
+  const resultRef = useRef<HTMLHeadingElement>(null);
   const [importSource, setImportSource] = useState<ImportChoice>(initialSource);
   const importSourceRef = useRef(importSource);
   function chooseImportSource(value: ImportChoice) {
@@ -92,7 +94,10 @@ export function AnalysisScreen({
   const [submittedPob2Code, setSubmittedPob2Code] = useState("");
   const { setBuild } = useBuildSession();
   const [result, action, pending] = useActionState(
-    async (_previous: AnalysisResult | null, formData: FormData): Promise<AnalysisResult> => {
+    async (
+      _previous: AnalysisResult | null,
+      formData: FormData,
+    ): Promise<AnalysisResult> => {
       const pob2Code = String(formData.get("pob2Code") ?? "");
       const demoId = String(formData.get("demoId") ?? "");
       setAutoDemoId("");
@@ -361,14 +366,9 @@ export function AnalysisScreen({
           )}
         </fieldset>
       </form>
-      <div
-        ref={resultRef}
-        tabIndex={-1}
-        className="import-result"
-        aria-label="Import result"
-      >
+      <div className="import-result" aria-label="Import result">
         {result ? (
-          <h2>
+          <h2 ref={resultRef} tabIndex={-1}>
             {result.ok
               ? "Build loaded · Analysis complete"
               : "Could not complete this analysis"}
@@ -381,6 +381,7 @@ export function AnalysisScreen({
           </p>
         ) : null}
         {result?.pob2 ? <Pob2Summary view={result.pob2} /> : null}
+        {result?.ok === true ? <BuildOverview result={result} /> : null}
         {result?.context ? <ContextSummary context={result.context} /> : null}
         {result?.gear ? <GearSummary gear={result.gear} /> : null}
         {result?.ok === false ? (
@@ -478,16 +479,45 @@ function ContextSummary({
   const visible = listed.filter((entry) => entry.relevance !== "no-evidence");
   const quiet = listed.filter((entry) => entry.relevance === "no-evidence");
   return (
-    <section>
-      <h2>Build context</h2>
+    <section className="build-context" id="build-context">
+      <div className="context-heading">
+        <div>
+          <p className="eyebrow">Imported build evidence</p>
+          <h2>Build context</h2>
+        </div>
+        <Badge
+          tone={
+            context.readiness.status === "ready"
+              ? "success"
+              : context.readiness.status === "partial"
+                ? "caution"
+                : "unavailable"
+          }
+        >
+          {context.readiness.status === "ready"
+            ? "Understood"
+            : context.readiness.status === "partial"
+              ? "Partially understood"
+              : "Needs more evidence"}
+        </Badge>
+      </div>
+      <div className="context-facts">
+        <div>
+          <strong>Primary skill</strong>
+          <span>{context.primarySkill.name ?? "Not identified"}</span>
+        </div>
+        <div>
+          <strong>Relevant mechanics</strong>
+          <span>{visible.length}</span>
+        </div>
+        <div>
+          <strong>Uncertain mechanics</strong>
+          <span>{context.unresolvedMechanics.length}</span>
+        </div>
+      </div>
       <p>
-        Primary skill: {context.primarySkill.name ?? "unavailable"}. Status:{" "}
-        {context.primarySkill.status}.
-      </p>
-      <p>Context readiness: {context.readiness.status}.</p>
-      <p>
-        This describes imported evidence. It is not a value, a gear ranking, or
-        an upgrade list.
+        Buddy uses this evidence to describe the build. It does not change the
+        passive ranking or claim a gear upgrade.
       </p>
       {visible.map((entry) => (
         <details key={`${entry.side}:${entry.mechanic}`}>
@@ -507,7 +537,19 @@ function ContextSummary({
           )}
         </details>
       ))}
-      <p>Unresolved mechanics: {context.unresolvedMechanics.length}</p>
+      {context.unresolvedMechanics.length > 0 ? (
+        <details>
+          <summary>
+            What Buddy could not determine ({context.unresolvedMechanics.length}
+            )
+          </summary>
+          <ul>
+            {context.unresolvedMechanics.map((mechanic) => (
+              <li key={mechanic}>{mechanic}</li>
+            ))}
+          </ul>
+        </details>
+      ) : null}
       {quiet.length > 0 ? (
         <details>
           <summary>
@@ -534,64 +576,95 @@ function GearSummary({ gear }: { gear: GearAnalysis }) {
     (diagnostic) => diagnostic.code !== "missing-equipment-slot",
   );
   return (
-    <section id="gear">
-      <h2>Gear</h2>
+    <section id="gear" className="gear-overview">
+      <div className="gear-heading">
+        <div>
+          <p className="eyebrow">Equipment</p>
+          <h2>Gear overview</h2>
+        </div>
+        <Badge
+          tone={
+            gear.readiness.status === "ready"
+              ? "success"
+              : gear.readiness.status === "partial"
+                ? "caution"
+                : "unavailable"
+          }
+        >
+          {gear.readiness.status === "ready"
+            ? "Understood"
+            : gear.readiness.status === "partial"
+              ? "Partially understood"
+              : "Needs more item data"}
+        </Badge>
+      </div>
       <p>
-        Gear-analysis readiness: {gear.readiness.status}. Parser coverage
-        describes how much of the item text is understood. It is not an item
-        quality score.
+        Parser coverage describes what Buddy can read from item text. It is not
+        an item quality score.
       </p>
-      {gear.items.map((item, index) => (
-        <article key={`${item.sourceSlot}:${item.name}:${index}`}>
-          <h3>{item.label}</h3>
-          <p>
-            {item.name}
-            {item.baseType ? ` · ${item.baseType}` : ""}
-          </p>
-          <p>Rarity: {item.rarity ?? "unavailable"}</p>
-          <p>
-            {item.totalModifierLines} modifier{" "}
-            {item.totalModifierLines === 1 ? "line" : "lines"},{" "}
-            {item.semanticallyUnderstoodLines} understood,{" "}
-            {item.unsupportedLines.length} unsupported
-          </p>
-          <p>
-            Understood modifiers:{" "}
-            {item.understoodSemanticIds.length > 0
-              ? item.understoodSemanticIds.join(", ")
-              : "none"}
-          </p>
-          <p>Analysis confidence: {item.confidence}</p>
-          {item.modifiers.some((modifier) => modifier.parsed) ? (
-            <details>
-              <summary>Modifier locality</summary>
-              <ul>
-                {item.modifiers
-                  .filter((modifier) => modifier.parsed)
-                  .map((modifier, lineIndex) => (
-                    <li key={`${lineIndex}:${modifier.rawText}`}>
-                      {modifier.rawText} — {modifier.semanticId} — locality:{" "}
-                      {modifier.locality}
-                      {modifier.locality === "unknown"
-                        ? " — Parsed modifier; item/global scope unresolved."
-                        : ""}
-                    </li>
+      <div className="gear-grid">
+        {gear.items.map((item, index) => (
+          <article
+            className="gear-card"
+            key={`${item.sourceSlot}:${item.name}:${index}`}
+          >
+            <h3>{item.label}</h3>
+            <p>
+              {item.name}
+              {item.baseType ? ` · ${item.baseType}` : ""}
+            </p>
+            <p>{item.rarity ?? "Unknown rarity"}</p>
+            <p>
+              {item.totalModifierLines} modifier{" "}
+              {item.totalModifierLines === 1 ? "line" : "lines"},{" "}
+              {item.semanticallyUnderstoodLines} understood,{" "}
+              {item.unsupportedLines.length} unsupported
+            </p>
+            <p>
+              Buddy understood {item.semanticallyUnderstoodLines} modifier
+              lines.
+            </p>
+            {item.modifiers.some((modifier) => modifier.parsed) ? (
+              <details>
+                <summary>Modifier locality</summary>
+                <ul>
+                  {item.modifiers
+                    .filter((modifier) => modifier.parsed)
+                    .map((modifier, lineIndex) => (
+                      <li key={`${lineIndex}:${modifier.rawText}`}>
+                        {modifier.rawText} — {modifier.semanticId} — locality:{" "}
+                        {modifier.locality}
+                        {modifier.locality === "unknown"
+                          ? " — Parsed modifier; item/global scope unresolved."
+                          : ""}
+                      </li>
+                    ))}
+                </ul>
+              </details>
+            ) : null}
+            {item.unsupportedLines.length > 0 ? (
+              <details>
+                <summary>Unsupported lines</summary>
+                <ul>
+                  {item.unsupportedLines.map((line, lineIndex) => (
+                    <li key={`${lineIndex}:${line}`}>{line}</li>
                   ))}
-              </ul>
-            </details>
-          ) : null}
-          {item.unsupportedLines.length > 0 ? (
+                </ul>
+              </details>
+            ) : null}
             <details>
-              <summary>Unsupported lines</summary>
-              <ul>
-                {item.unsupportedLines.map((line, lineIndex) => (
-                  <li key={`${lineIndex}:${line}`}>{line}</li>
-                ))}
-              </ul>
+              <summary>Technical item details</summary>
+              <p>Analysis confidence: {item.confidence}</p>
+              <p>
+                Understood modifiers:{" "}
+                {item.understoodSemanticIds.length > 0
+                  ? item.understoodSemanticIds.join(", ")
+                  : "none"}
+              </p>
             </details>
-          ) : null}
-        </article>
-      ))}
+          </article>
+        ))}
+      </div>
       <p>Missing slots: {missing.length === 0 ? "none" : missing.length}</p>
       {missing.length > 0 ? (
         <ul>
@@ -644,6 +717,21 @@ function AnalysisReport({
   ];
   const [focusedKey, setFocusedKey] = useState<string | null>(null);
   const [comparedKeys, setComparedKeys] = useState<string[]>([]);
+  const [incompleteQuery, setIncompleteQuery] = useState("");
+  const [incompleteLimit, setIncompleteLimit] = useState(10);
+  const normalizedIncompleteQuery = incompleteQuery.trim().toLocaleLowerCase();
+  const visibleIncompleteCandidates =
+    normalizedIncompleteQuery.length === 0
+      ? recommendation.incompleteCandidates
+      : recommendation.incompleteCandidates.filter((candidate) =>
+          allocationSteps(candidate.nodeIds, catalog).some((step) =>
+            step.name.toLocaleLowerCase().includes(normalizedIncompleteQuery),
+          ),
+        );
+  const displayedIncompleteCandidates = visibleIncompleteCandidates.slice(
+    0,
+    incompleteLimit,
+  );
   const focused =
     candidates.find((candidate) => pathKey(candidate.nodeIds) === focusedKey) ??
     candidates[0];
@@ -684,34 +772,140 @@ function AnalysisReport({
       <p data-claim={recommendation.selectionClaim}>
         {CLAIM_TEXT[recommendation.selectionClaim]}
       </p>
-      <dl className="analysis-meta">
-        <div>
-          <dt>Tree version</dt>
-          <dd>{version.version ?? "unknown"}</dd>
+      <details className="technical-panel">
+        <summary>Data and technical details</summary>
+        <dl className="analysis-meta">
+          <div>
+            <dt>Tree version</dt>
+            <dd>{version.version ?? "unknown"}</dd>
+          </div>
+          <div>
+            <dt>Tree commit</dt>
+            <dd>{version.commit ?? "unknown"}</dd>
+          </div>
+          <div>
+            <dt>Scoring profile</dt>
+            <dd>
+              {recommendation.profileId} v{recommendation.profileVersion}
+            </dd>
+          </div>
+          <div>
+            <dt>Point budget</dt>
+            <dd>{recommendation.pointBudget}</dd>
+          </div>
+          <div>
+            <dt>Search</dt>
+            <dd>{recommendation.searchCompleteness}</dd>
+          </div>
+          <div>
+            <dt>Definitive</dt>
+            <dd>{recommendation.definitive ? "yes" : "no"}</dd>
+          </div>
+        </dl>
+      </details>
+      <section
+        className="passive-recommendations"
+        aria-labelledby="recommendations-heading"
+      >
+        <div className="recommendations-heading">
+          <div>
+            <p className="eyebrow">Passive upgrades</p>
+            <h3 id="recommendations-heading">Recommended passive paths</h3>
+          </div>
+          <Badge tone="heuristic">Heuristic</Badge>
         </div>
-        <div>
-          <dt>Tree commit</dt>
-          <dd>{version.commit ?? "unknown"}</dd>
-        </div>
-        <div>
-          <dt>Profile</dt>
-          <dd>
-            {recommendation.profileId} v{recommendation.profileVersion}
-          </dd>
-        </div>
-        <div>
-          <dt>Point budget</dt>
-          <dd>{recommendation.pointBudget}</dd>
-        </div>
-        <div>
-          <dt>Search</dt>
-          <dd>{recommendation.searchCompleteness}</dd>
-        </div>
-        <div>
-          <dt>Definitive</dt>
-          <dd>{recommendation.definitive ? "yes" : "no"}</dd>
-        </div>
-      </dl>
+        <p>
+          Paths keep the engine&apos;s ranking. A heuristic score estimates the
+          match to the selected objective; it is not a PoB2 measurement.
+        </p>
+        {recommendation.rankedCompleteCandidates.length === 0 ? (
+          <p>No fully valued path is available.</p>
+        ) : (
+          <ol className="recommendation-list">
+            {recommendation.rankedCompleteCandidates.map((candidate, index) => (
+              <PathRow
+                key={pathKey(candidate.nodeIds)}
+                candidate={candidate}
+                catalog={catalog}
+                rank={index + 1}
+                compared={comparedKeys.includes(pathKey(candidate.nodeIds))}
+                compareDisabled={
+                  comparedKeys.length >= 2 &&
+                  !comparedKeys.includes(pathKey(candidate.nodeIds))
+                }
+                focused={
+                  focused !== undefined &&
+                  pathKey(focused.nodeIds) === pathKey(candidate.nodeIds)
+                }
+                onCompare={() => toggleCompared(pathKey(candidate.nodeIds))}
+                onFocus={() => setFocusedKey(pathKey(candidate.nodeIds))}
+              />
+            ))}
+          </ol>
+        )}
+        {recommendation.incompleteCandidates.length === 0 ? null : (
+          <details className="incomplete-paths">
+            <summary>
+              Other paths with incomplete valuation (
+              {recommendation.incompleteCandidates.length})
+            </summary>
+            <p>
+              These paths are kept separate because their known score does not
+              establish their full value.
+            </p>
+            <label className="incomplete-search">
+              Find a node in these paths
+              <input
+                type="search"
+                value={incompleteQuery}
+                onChange={(event) => {
+                  setIncompleteQuery(event.target.value);
+                  setIncompleteLimit(10);
+                }}
+                placeholder="Search node names"
+              />
+            </label>
+            <p aria-live="polite">
+              Showing {displayedIncompleteCandidates.length} of{" "}
+              {visibleIncompleteCandidates.length} matching paths.
+            </p>
+            {displayedIncompleteCandidates.length === 0 ? (
+              <p>No incomplete path contains that node name.</p>
+            ) : (
+              <ol className="recommendation-list">
+                {displayedIncompleteCandidates.map((candidate, index) => (
+                  <PathRow
+                    key={pathKey(candidate.nodeIds)}
+                    candidate={candidate}
+                    catalog={catalog}
+                    rank={index + 1}
+                    compared={comparedKeys.includes(pathKey(candidate.nodeIds))}
+                    compareDisabled={
+                      comparedKeys.length >= 2 &&
+                      !comparedKeys.includes(pathKey(candidate.nodeIds))
+                    }
+                    focused={
+                      focused !== undefined &&
+                      pathKey(focused.nodeIds) === pathKey(candidate.nodeIds)
+                    }
+                    onCompare={() => toggleCompared(pathKey(candidate.nodeIds))}
+                    onFocus={() => setFocusedKey(pathKey(candidate.nodeIds))}
+                  />
+                ))}
+              </ol>
+            )}
+            {displayedIncompleteCandidates.length <
+            visibleIncompleteCandidates.length ? (
+              <button
+                type="button"
+                onClick={() => setIncompleteLimit((limit) => limit + 10)}
+              >
+                Show 10 more paths
+              </button>
+            ) : null}
+          </details>
+        )}
+      </section>
       <ExplanationPanel explanation={result.explanation} />
       <h3>Already allocated</h3>
       <AllocationList
@@ -731,7 +925,7 @@ function AnalysisReport({
               </li>
             ))}
           </ol>
-          <PathSketch map={map} comparing={compared.length === 2} />
+          <PassiveTreeCanvas map={map} comparing={compared.length === 2} />
         </>
       )}
       {compared.length === 2 && compared[0] && compared[1] ? (
@@ -763,56 +957,6 @@ function AnalysisReport({
           </div>
         </>
       ) : null}
-      <h3>Fully valued paths</h3>
-      {recommendation.rankedCompleteCandidates.length === 0 ? (
-        <p>No fully valued path is available.</p>
-      ) : (
-        <ol>
-          {recommendation.rankedCompleteCandidates.map((candidate) => (
-            <PathRow
-              key={pathKey(candidate.nodeIds)}
-              candidate={candidate}
-              catalog={catalog}
-              compared={comparedKeys.includes(pathKey(candidate.nodeIds))}
-              compareDisabled={
-                comparedKeys.length >= 2 &&
-                !comparedKeys.includes(pathKey(candidate.nodeIds))
-              }
-              focused={
-                focused !== undefined &&
-                pathKey(focused.nodeIds) === pathKey(candidate.nodeIds)
-              }
-              onCompare={() => toggleCompared(pathKey(candidate.nodeIds))}
-              onFocus={() => setFocusedKey(pathKey(candidate.nodeIds))}
-            />
-          ))}
-        </ol>
-      )}
-      <h3>Incomplete paths ({recommendation.incompleteCandidates.length})</h3>
-      {recommendation.incompleteCandidates.length === 0 ? (
-        <p>No incomplete paths.</p>
-      ) : (
-        <ol>
-          {recommendation.incompleteCandidates.map((candidate) => (
-            <PathRow
-              key={pathKey(candidate.nodeIds)}
-              candidate={candidate}
-              catalog={catalog}
-              compared={comparedKeys.includes(pathKey(candidate.nodeIds))}
-              compareDisabled={
-                comparedKeys.length >= 2 &&
-                !comparedKeys.includes(pathKey(candidate.nodeIds))
-              }
-              focused={
-                focused !== undefined &&
-                pathKey(focused.nodeIds) === pathKey(candidate.nodeIds)
-              }
-              onCompare={() => toggleCompared(pathKey(candidate.nodeIds))}
-              onFocus={() => setFocusedKey(pathKey(candidate.nodeIds))}
-            />
-          ))}
-        </ol>
-      )}
     </section>
   );
 }
@@ -830,20 +974,32 @@ function ExplanationPanel({
   }
   if (explanation?.status !== "ready") return null;
   return (
-    <section className="explanation" aria-label="Explanation">
-      <h3>Explanation</h3>
-      <p>How this result was derived</p>
-      <p data-provider={explanation.document.provider.providerId}>
-        Deterministic explanation
-      </p>
-      {explanation.document.sections.map((section) => (
-        <div key={section.id}>
-          <h4>{section.heading}</h4>
-          {section.paragraphs.map((paragraph, index) => (
-            <p key={`${section.id}:${index}`}>{paragraph}</p>
-          ))}
+    <section className="explanation" aria-labelledby="explanation-heading">
+      <div className="explanation-heading">
+        <div>
+          <p className="eyebrow">Recommendation help</p>
+          <h3 id="explanation-heading">Why this recommendation?</h3>
         </div>
-      ))}
+        <Badge tone="neutral">Deterministic</Badge>
+      </div>
+      <p>
+        These notes repeat the checked facts used to describe this result. They
+        do not add an AI estimate or change the ranking.
+      </p>
+      <details>
+        <summary>Read the full explanation</summary>
+        <p data-provider={explanation.document.provider.providerId}>
+          Evidence source: deterministic explanation
+        </p>
+        {explanation.document.sections.map((section) => (
+          <div key={section.id}>
+            <h4>{section.heading}</h4>
+            {section.paragraphs.map((paragraph, index) => (
+              <p key={`${section.id}:${index}`}>{paragraph}</p>
+            ))}
+          </div>
+        ))}
+      </details>
     </section>
   );
 }
@@ -874,89 +1030,6 @@ function AllocationList({
           </li>
         ))}
     </ul>
-  );
-}
-
-function PathSketch({
-  map,
-  comparing,
-}: {
-  map: PathMap | null;
-  comparing: boolean;
-}) {
-  if (map === null) {
-    return (
-      <p>
-        This local map needs node positions. The numbered list is the allocation
-        order.
-      </p>
-    );
-  }
-  const xs = map.points.map((point) => point.x);
-  const ys = map.points.map((point) => point.y);
-  const span = Math.max(
-    Math.max(...xs) - Math.min(...xs),
-    Math.max(...ys) - Math.min(...ys),
-    1,
-  );
-  const radius = span * 0.045;
-  return (
-    <>
-      <svg
-        className="path-map"
-        viewBox={map.viewBox}
-        role="img"
-        aria-label="Local sketch of the selected path"
-      >
-        {map.edges.map((edge) => {
-          const from = map.points.find((point) => point.id === edge.from);
-          const to = map.points.find((point) => point.id === edge.to);
-          if (!from || !to) return null;
-          return (
-            <line
-              key={`${edge.kind}-${edge.from}-${edge.to}`}
-              x1={from.x}
-              y1={from.y}
-              x2={to.x}
-              y2={to.y}
-              strokeWidth={radius * 0.35}
-              className={`path-edge path-edge-${edge.kind}`}
-            />
-          );
-        })}
-        {map.points.map((point) => (
-          <g key={`${point.role}-${point.id}`}>
-            <circle
-              cx={point.x}
-              cy={point.y}
-              r={radius}
-              className={`path-node path-node-${point.role}`}
-            >
-              <title>
-                {point.step === null
-                  ? "Already allocated"
-                  : `Step ${point.step}`}
-                : {point.name} ({point.id})
-              </title>
-            </circle>
-            <text
-              x={point.x}
-              y={point.y}
-              fontSize={radius}
-              className="path-step"
-            >
-              {point.step ?? "·"}
-            </text>
-          </g>
-        ))}
-      </svg>
-      <p>
-        Gray is already allocated. Blue is the path shown above.
-        {comparing
-          ? " Purple is shared with the second selected path. Orange is only on that second path. Step numbers follow the first selected path."
-          : ""}
-      </p>
-    </>
   );
 }
 
@@ -1010,6 +1083,7 @@ function namesFor(
 function PathRow({
   candidate,
   catalog,
+  rank,
   compared,
   compareDisabled,
   focused,
@@ -1036,6 +1110,7 @@ function PathRow({
     pathSemanticCoverage: { semanticCoverageRatio: number };
   };
   catalog: ReadonlyMap<number, LayoutNode>;
+  rank: number;
   compared: boolean;
   compareDisabled: boolean;
   focused: boolean;
@@ -1044,26 +1119,44 @@ function PathRow({
 }) {
   const steps = allocationSteps(candidate.nodeIds, catalog);
   return (
-    <li className="path-row">
-      <label className="compare-toggle">
-        <input
-          type="checkbox"
-          checked={compared}
-          disabled={compareDisabled}
-          onChange={onCompare}
-        />
-        Compare
-      </label>
-      <button type="button" onClick={onFocus} aria-pressed={focused}>
-        {focused ? "Showing on map" : "Show on map"}
-      </button>
+    <li className="path-row recommendation-card">
+      <div className="recommendation-card-heading">
+        <div>
+          <p className="recommendation-rank">Path {rank}</p>
+          <h4>{steps.map((step) => step.name).join(" → ")}</h4>
+        </div>
+        <dl className="recommendation-facts">
+          <div>
+            <dt>Cost</dt>
+            <dd>{candidate.pointCost} points</dd>
+          </div>
+          <div>
+            <dt>Heuristic score</dt>
+            <dd>{formatScore(candidate.heuristicScore)}</dd>
+          </div>
+        </dl>
+      </div>
+      <p>
+        {candidate.fullValueUnknown
+          ? "Full value is not known for this path."
+          : "This path has a complete valuation."}
+      </p>
+      <div className="recommendation-actions">
+        <button type="button" onClick={onFocus} aria-pressed={focused}>
+          {focused ? "Showing on map" : "Show on map"}
+        </button>
+        <label className="compare-toggle">
+          <input
+            type="checkbox"
+            checked={compared}
+            disabled={compareDisabled}
+            onChange={onCompare}
+          />
+          Compare
+        </label>
+      </div>
       <details>
-        <summary>
-          {steps.map((step) => `${step.step}. ${step.name}`).join(" → ")} ·{" "}
-          {candidate.pointCost} points · score{" "}
-          {formatScore(candidate.heuristicScore)}
-          {candidate.fullValueUnknown ? " · full value unknown" : ""}
-        </summary>
+        <summary>Technical score details</summary>
         <ol>
           {steps.map((step) => (
             <li key={step.id}>
@@ -1105,8 +1198,8 @@ function PathRow({
           <>
             <h4>Unsupported lines</h4>
             <ul>
-              {candidate.unsupportedRawLines.map((line) => (
-                <li key={line}>{line}</li>
+              {candidate.unsupportedRawLines.map((line, lineIndex) => (
+                <li key={`${lineIndex}:${line}`}>{line}</li>
               ))}
             </ul>
           </>

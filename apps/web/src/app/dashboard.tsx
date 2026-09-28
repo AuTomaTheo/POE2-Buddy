@@ -88,7 +88,18 @@ export function Dashboard({
         </Card>
       </div>
       <section id="demos">
-        <h2>Demos</h2>
+        <div className="test-mode-heading">
+          <div>
+            <p className="eyebrow">Product-owner test mode</p>
+            <h2>Guided test scenarios</h2>
+          </div>
+          <Badge tone="neutral">Test mode</Badge>
+        </div>
+        <p>
+          Open a scenario, run its analysis, then check the listed expected
+          outcome. Demo data is safe for testing and does not store a personal
+          build.
+        </p>
         <div className="start-grid">
           {START_DEMOS.map((demo) => (
             <Card key={demo.id} title={demo.title}>
@@ -98,6 +109,10 @@ export function Dashboard({
                   <li key={item}>{item}</li>
                 ))}
               </ul>
+              <p>
+                <strong>Expected:</strong> {demo.shows[0]} is available after
+                the page finishes loading.
+              </p>
               <p>
                 <Link className="button" href={demo.href}>
                   Open demo
